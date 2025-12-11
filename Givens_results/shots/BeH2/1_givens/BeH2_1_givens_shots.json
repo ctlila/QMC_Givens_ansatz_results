@@ -1,0 +1,206 @@
+{
+    "final_elec_energy": [
+        -19.09675277764446,
+        0.012813492104383293
+    ],
+    "final_energy_std": null,
+    "nuclear_energy": 3.74833857735,
+    "final_total_energy": [
+        -15.348414200294462,
+        0.012813492104383293
+    ],
+    "final_params": [
+        [
+            0.27714662688434355
+        ],
+        [
+            0.27714662688434355
+        ],
+        [
+            0.27714662688434355
+        ],
+        [
+            0.27714662688434355
+        ],
+        [
+            0.27714662688434355
+        ],
+        [
+            0.27714662688434355
+        ],
+        [
+            0.27714662688434355
+        ],
+        [
+            0.27714662688434355
+        ],
+        [
+            0.27714662688434355
+        ],
+        [
+            0.27714662688434355
+        ]
+    ],
+    "success": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+    ],
+    "initial_params": [
+        0.27714662688434355
+    ],
+    "initial_energy": [
+        -19.09675277764446,
+        0.012813492104383293
+    ],
+    "initial_energy_std": null,
+    "optimizer": null,
+    "param_mode": "load_optimal",
+    "circuit_path": "/home/qlila/ResearchCode/GivensVQE/ansatz_circuits/ordered_circuits/BeH2/1_givens.qpy",
+    "nb_removed_dets": null,
+    "nb_givens": 1,
+    "molecule": "BeH2",
+    "shots": 1000,
+    "nb_single_givens": 0,
+    "nb_double_givens": 1,
+    "param_path": "/home/qlila/ResearchCode/GivensVQE/ansatz_circuits/ordered_circuits/BeH2/1_givens_optimal_params.npy",
+    "energy_error": [
+        0.0002884234147355613,
+        0.012813492104383293
+    ],
+    "circuit": "1_givens",
+    "shot_dir": "1000_shots",
+    "nb_samples": 10,
+    "nb_hamiltonian_measurements": 16,
+    "givens_depth": 2,
+    "nb_qubits": 8,
+    "seed": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+    ],
+    "nb_iterations": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+    ],
+    "termination_flag": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+    ],
+    "nb_function_evals": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+    ],
+    "used_params_indices": [
+        0
+    ],
+    "jobs_dict": {
+        "0": [
+            null,
+            0.24582601363398968
+        ],
+        "1": [
+            null,
+            -0.0435883914070085
+        ],
+        "2": [
+            null,
+            0.12356174691908778
+        ],
+        "3": [
+            null,
+            -0.05693939292965398
+        ],
+        "4": [
+            null,
+            0.5577903009825296
+        ],
+        "5": [
+            null,
+            -0.5902170894976528
+        ],
+        "6": [
+            null,
+            0.05351761194184031
+        ],
+        "7": [
+            null,
+            0.05453515310704069
+        ],
+        "8": [
+            null,
+            -0.005869679660105091
+        ],
+        "9": [
+            null,
+            0.00022568617732647334
+        ],
+        "10": [
+            null,
+            0.10320158302907512
+        ],
+        "11": [
+            null,
+            -0.9038104086812075
+        ],
+        "12": [
+            null,
+            0.0005517616229110678
+        ],
+        "13": [
+            null,
+            0.23577751824475485
+        ],
+        "14": [
+            null,
+            -3.5493521740333773
+        ],
+        "15": [
+            null,
+            -3.108325472741988
+        ],
+        "id": [
+            null,
+            -12.193995749939267
+        ]
+    },
+    "HQC_cost": 0
+}

@@ -1,0 +1,47 @@
+{
+    "final_elec_energy": -19.095960638850247,
+    "final_energy_std": null,
+    "nuclear_energy": 3.74833857735,
+    "final_total_energy": -15.347622061500246,
+    "final_params": [
+        0.2646634796684384,
+        0.07529700624595266,
+        0.0030290059146816243
+    ],
+    "success": true,
+    "initial_params": [
+        0.0,
+        0.0,
+        0.0
+    ],
+    "initial_energy": -19.072811711050665,
+    "initial_energy_std": null,
+    "optimizer": "L-BFGS-B",
+    "param_mode": "zeros",
+    "circuit_path": "/home/qlila/ResearchCode/GivensVQE/ansatz_circuits/ordered_circuits/BeH2/3_givens.qpy",
+    "nb_removed_dets": null,
+    "nb_givens": 3,
+    "molecule": "BeH2",
+    "shots": null,
+    "nb_single_givens": 0,
+    "nb_double_givens": 3,
+    "param_path": null,
+    "energy_error": 0.0010805622089513633,
+    "circuit": "3_givens",
+    "shot_dir": "statevector",
+    "nb_samples": 1,
+    "nb_hamiltonian_measurements": null,
+    "givens_depth": 4,
+    "nb_qubits": 8,
+    "seed": null,
+    "nb_iterations": 6,
+    "termination_flag": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+    "nb_function_evals": 36,
+    "used_params_indices": [
+        0,
+        1,
+        2
+    ],
+    "jobs_dict": {},
+    "HQC_cost": 0
+}

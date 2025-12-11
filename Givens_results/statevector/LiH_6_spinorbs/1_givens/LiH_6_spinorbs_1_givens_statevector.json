@@ -1,0 +1,41 @@
+{
+    "final_elec_energy": -9.077542456353143,
+    "final_energy_std": null,
+    "nuclear_energy": 1.133951166257143,
+    "final_total_energy": -7.943591290096,
+    "final_params": [
+        0.5146257553734979
+    ],
+    "success": true,
+    "initial_params": [
+        0.0
+    ],
+    "initial_energy": -9.041128586003254,
+    "initial_energy_std": null,
+    "optimizer": "L-BFGS-B",
+    "param_mode": "zeros",
+    "circuit_path": "/home/qlila/ResearchCode/GivensVQE/ansatz_circuits/ordered_circuits/LiH_6_spinorbs/1_givens.qpy",
+    "nb_removed_dets": null,
+    "nb_givens": 1,
+    "molecule": "LiH_6_spinorbs",
+    "shots": null,
+    "nb_single_givens": 0,
+    "nb_double_givens": 1,
+    "param_path": null,
+    "energy_error": 0.0010440587157205528,
+    "circuit": "1_givens",
+    "shot_dir": "statevector",
+    "nb_samples": 1,
+    "nb_hamiltonian_measurements": null,
+    "givens_depth": 2,
+    "nb_qubits": 6,
+    "seed": null,
+    "nb_iterations": 3,
+    "termination_flag": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+    "nb_function_evals": 10,
+    "used_params_indices": [
+        0
+    ],
+    "jobs_dict": {},
+    "HQC_cost": 0
+}

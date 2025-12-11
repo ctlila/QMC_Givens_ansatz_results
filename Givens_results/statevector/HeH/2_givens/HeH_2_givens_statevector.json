@@ -1,0 +1,44 @@
+{
+    "final_elec_energy": -4.224970882173895,
+    "final_energy_std": null,
+    "nuclear_energy": 1.3744862621298704,
+    "final_total_energy": -2.8504846200440244,
+    "final_params": [
+        -0.02837986092391348,
+        0.13018511716958597
+    ],
+    "success": true,
+    "initial_params": [
+        0.0,
+        0.0
+    ],
+    "initial_energy": -4.2154637187419395,
+    "initial_energy_std": null,
+    "optimizer": "L-BFGS-B",
+    "param_mode": "zeros",
+    "circuit_path": "/home/qlila/ResearchCode/GivensVQE/ansatz_circuits/ordered_circuits/HeH/2_givens.qpy",
+    "nb_removed_dets": null,
+    "nb_givens": 2,
+    "molecule": "HeH",
+    "shots": null,
+    "nb_single_givens": 1,
+    "nb_double_givens": 1,
+    "param_path": null,
+    "energy_error": 0.00014449155207074682,
+    "circuit": "2_givens",
+    "shot_dir": "statevector",
+    "nb_samples": 1,
+    "nb_hamiltonian_measurements": null,
+    "givens_depth": 3,
+    "nb_qubits": 4,
+    "seed": null,
+    "nb_iterations": 4,
+    "termination_flag": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+    "nb_function_evals": 18,
+    "used_params_indices": [
+        0,
+        2
+    ],
+    "jobs_dict": {},
+    "HQC_cost": 0
+}

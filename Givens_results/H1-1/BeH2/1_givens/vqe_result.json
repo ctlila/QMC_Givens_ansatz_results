@@ -1,0 +1,61 @@
+{
+    "final_elec_energy": -19.003113230189967,
+    "final_energy_std": null,
+    "nuclear_energy": 3.74833857735,
+    "final_total_energy": -15.254774652839966,
+    "final_params": [
+        0.27714662688434355
+    ],
+    "success": null,
+    "initial_params": [
+        0.27714662688434355
+    ],
+    "initial_energy": -19.003113230189967,
+    "initial_energy_std": null,
+    "optimizer": null,
+    "param_mode": "load_optimal",
+    "circuit_path": "/home/qlila/ResearchCode/GivensVQE/ansatz_circuits/ordered_circuits/BeH2/1_givens.qpy",
+    "nb_removed_dets": null,
+    "nb_givens": 1,
+    "molecule": "BeH2",
+    "backend": "QuantinuumBackend",
+    "machine_name": "H1-1",
+    "shots": 1000,
+    "nb_single_givens": 0,
+    "nb_double_givens": 1,
+    "param_path": "/home/qlila/ResearchCode/GivensVQE/ansatz_circuits/ordered_circuits/BeH2/1_givens_optimal_params.npy",
+    "energy_error": 0.0939279708692311,
+    "circuit": "1_givens",
+    "shot_dir": "1000_shots",
+    "nb_samples": 1,
+    "nb_hamiltonian_measurements": 16,
+    "givens_depth": 2,
+    "nb_qubits": 8,
+    "seed": null,
+    "nb_iterations": null,
+    "termination_flag": null,
+    "nb_function_evals": null,
+    "used_params_indices": [
+        0
+    ],
+    "jobs_dict": "3d2a142b-8fe3-4bec-9161-3b2433031bce",
+    "circuit_ids": [
+        "ec67b025-61d6-4e6f-a120-4ed1abc4f9ac",
+        "f301b26e-b45c-445d-a8b4-6f69e8193af5",
+        "0e9dd488-b8e1-4b69-91ad-54053d78908c",
+        "c22350ac-35f9-4eef-af59-6bb5bf584b06",
+        "0e489046-2df7-4e88-9e68-04ad7df715bc",
+        "80cc8e12-6bf5-4fc0-8cf3-934bd586bb3a",
+        "389fe299-a087-40ec-8efa-dba06eb74430",
+        "fa69108b-eaf7-4fe9-92b9-5e46520c85b6",
+        "475bd721-a176-46f9-b87d-1438d4173fdf",
+        "09c5c73e-6d72-411b-be5d-5253005e73ca",
+        "53760449-5e56-4d5b-b53f-87b6fd5287d5",
+        "998d69eb-7033-4e7f-8d8e-fc46cfdfcb11",
+        "325accc7-d4d0-45d9-8684-a7a70d3c2362",
+        "8004da3c-2b43-4c22-9091-d731a005f14b",
+        "cf8a0b13-1fe6-4002-b571-39448b0fb29d",
+        "a4b326c2-3261-4a3b-9334-fccd3847ef65"
+    ],
+    "HQC_cost": 1038.4
+}

@@ -1,0 +1,56 @@
+{
+    "final_elec_energy": -4.193408428730407,
+    "final_energy_std": null,
+    "nuclear_energy": 1.3744862621298704,
+    "final_total_energy": -2.818922166600537,
+    "final_params": [],
+    "success": null,
+    "initial_params": [],
+    "initial_energy": -4.193408428730407,
+    "initial_energy_std": null,
+    "optimizer": null,
+    "param_mode": "load_optimal",
+    "circuit_path": "/home/qlila/ResearchCode/GivensVQE/ansatz_circuits/ordered_circuits/HeH/0_givens.qpy",
+    "nb_removed_dets": null,
+    "nb_givens": 0,
+    "molecule": "HeH",
+    "shots": 1000,
+    "nb_single_givens": 0,
+    "nb_double_givens": 0,
+    "param_path": "/home/qlila/ResearchCode/GivensVQE/ansatz_circuits/ordered_circuits/HeH/0_givens_optimal_params.npy",
+    "energy_error": 0.03170694499555804,
+    "circuit": "0_givens",
+    "shot_dir": "1000_shots",
+    "nb_samples": 1,
+    "nb_hamiltonian_measurements": 4,
+    "givens_depth": 2,
+    "nb_qubits": 4,
+    "seed": null,
+    "nb_iterations": null,
+    "termination_flag": null,
+    "nb_function_evals": null,
+    "used_params_indices": [],
+    "jobs_dict": {
+        "0": [
+            "2e1dc255fb8b4a2f91085b463005d3f5",
+            -0.15513461587268476
+        ],
+        "1": [
+            "241fa32aecba4b8e85413dfffced810a",
+            0.0027237002676392666
+        ],
+        "2": [
+            "6455e028673e47e69b7ae9da02464791",
+            -0.5663157658601391
+        ],
+        "3": [
+            "b107ce6c8a224cdf859aeff43b6f1a89",
+            -0.5610256882960668
+        ],
+        "id": [
+            null,
+            -2.9136560589691562
+        ]
+    },
+    "HQC_cost": 73.4
+}

@@ -1,0 +1,94 @@
+{
+    "final_elec_energy": -9.021723164840429,
+    "final_energy_std": null,
+    "nuclear_energy": 1.133951166257143,
+    "core_energy": 0.0,
+    "final_total_energy": -7.887771998583286,
+    "final_params": [
+        -0.0018981500127590635,
+        0.03760584445461725,
+        -0.001899679154072587,
+        -0.2651585757337915,
+        0.026442548807588274
+    ],
+    "success": null,
+    "initial_params": [
+        -0.0018981500127590635,
+        0.03760584445461725,
+        -0.001899679154072587,
+        -0.2651585757337915,
+        0.026442548807588274
+    ],
+    "initial_energy": -9.021723164840429,
+    "initial_energy_std": null,
+    "optimizer": null,
+    "param_mode": "load_optimal",
+    "circuit_path": "/home/qlila/ResearchCode/GivensVQE/ansatz_circuits/UCCSD/LiH_6_spinorbs/LiH_5.json",
+    "nb_removed_dets": null,
+    "nb_givens": null,
+    "nb_params": 5,
+    "molecule": "LiH_6_spinorbs",
+    "shots": 1000,
+    "nb_single_givens": null,
+    "nb_double_givens": null,
+    "param_path": "/home/qlila/ResearchCode/GivensVQE/ansatz_circuits/UCCSD/LiH_6_spinorbs/LiH_5_optimal_params.npy",
+    "energy_error": 0.056863350228434584,
+    "circuit": "LiH_5",
+    "shot_dir": "1000_shots",
+    "nb_samples": 1,
+    "nb_hamiltonian_measurements": 10,
+    "givens_depth": 29,
+    "nb_qubits": 6,
+    "seed": null,
+    "nb_iterations": null,
+    "termination_flag": null,
+    "nb_function_evals": null,
+    "used_params_indices": null,
+    "jobs_dict": {
+        "0": [
+            null,
+            -0.31320422878348386
+        ],
+        "1": [
+            null,
+            -6.964076516764072e-06
+        ],
+        "2": [
+            null,
+            -1.752778949014124
+        ],
+        "3": [
+            null,
+            0.12818362123369823
+        ],
+        "4": [
+            null,
+            -0.0023776402409645125
+        ],
+        "5": [
+            null,
+            -1.6000371787438337
+        ],
+        "6": [
+            null,
+            -0.10681998421120463
+        ],
+        "7": [
+            null,
+            0.40842113031134636
+        ],
+        "8": [
+            null,
+            -3.7336879631114045e-05
+        ],
+        "9": [
+            null,
+            9.729820279041848e-06
+        ],
+        "id": [
+            null,
+            -5.783075364255998
+        ]
+    },
+    "HQC_cost": 0
+}

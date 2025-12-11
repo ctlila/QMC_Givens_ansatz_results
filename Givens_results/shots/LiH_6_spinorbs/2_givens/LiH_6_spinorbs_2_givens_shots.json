@@ -1,0 +1,194 @@
+{
+    "final_elec_energy": [
+        -9.080044316144434,
+        0.008510788978509922
+    ],
+    "final_energy_std": null,
+    "nuclear_energy": 1.133951166257143,
+    "final_total_energy": [
+        -7.9460931498872895,
+        0.008510788978509922
+    ],
+    "final_params": [
+        [
+            0.5146237830579689,
+            -9.897880371357974e-05
+        ],
+        [
+            0.5146237830579689,
+            -9.897880371357974e-05
+        ],
+        [
+            0.5146237830579689,
+            -9.897880371357974e-05
+        ],
+        [
+            0.5146237830579689,
+            -9.897880371357974e-05
+        ],
+        [
+            0.5146237830579689,
+            -9.897880371357974e-05
+        ],
+        [
+            0.5146237830579689,
+            -9.897880371357974e-05
+        ],
+        [
+            0.5146237830579689,
+            -9.897880371357974e-05
+        ],
+        [
+            0.5146237830579689,
+            -9.897880371357974e-05
+        ],
+        [
+            0.5146237830579689,
+            -9.897880371357974e-05
+        ],
+        [
+            0.5146237830579689,
+            -9.897880371357974e-05
+        ]
+    ],
+    "success": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+    ],
+    "initial_params": [
+        0.5146237830579689,
+        -9.897880371357974e-05
+    ],
+    "initial_energy": [
+        -9.080044316144434,
+        0.008510788978509922
+    ],
+    "initial_energy_std": null,
+    "optimizer": null,
+    "param_mode": "load_optimal",
+    "circuit_path": "/home/qlila/ResearchCode/GivensVQE/ansatz_circuits/ordered_circuits/LiH_6_spinorbs/2_givens.qpy",
+    "nb_removed_dets": null,
+    "nb_givens": 2,
+    "molecule": "LiH_6_spinorbs",
+    "shots": 1000,
+    "nb_single_givens": 0,
+    "nb_double_givens": 2,
+    "param_path": "/home/qlila/ResearchCode/GivensVQE/ansatz_circuits/ordered_circuits/LiH_6_spinorbs/2_givens_optimal_params.npy",
+    "energy_error": [
+        -0.0014578010755700531,
+        0.008510788978509922
+    ],
+    "circuit": "2_givens",
+    "shot_dir": "1000_shots",
+    "nb_samples": 10,
+    "nb_hamiltonian_measurements": 10,
+    "givens_depth": 3,
+    "nb_qubits": 6,
+    "seed": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+    ],
+    "nb_iterations": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+    ],
+    "termination_flag": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+    ],
+    "nb_function_evals": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+    ],
+    "used_params_indices": [
+        0,
+        1
+    ],
+    "jobs_dict": {
+        "0": [
+            null,
+            -0.3262967280878056
+        ],
+        "1": [
+            null,
+            -0.0010699055884439632
+        ],
+        "2": [
+            null,
+            -1.733566083944952
+        ],
+        "3": [
+            null,
+            0.12495272437214525
+        ],
+        "4": [
+            null,
+            -0.0010141464289488374
+        ],
+        "5": [
+            null,
+            -1.639369090411667
+        ],
+        "6": [
+            null,
+            -0.06572615426371836
+        ],
+        "7": [
+            null,
+            0.3413679595558911
+        ],
+        "8": [
+            null,
+            -1.4842348502824839e-05
+        ],
+        "9": [
+            null,
+            -3.923310355578776e-05
+        ],
+        "id": [
+            null,
+            -5.783075364255998
+        ]
+    },
+    "HQC_cost": 0
+}

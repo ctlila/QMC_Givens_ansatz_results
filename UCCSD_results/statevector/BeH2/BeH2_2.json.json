@@ -1,0 +1,43 @@
+{
+    "final_elec_energy": -19.095935626448718,
+    "final_energy_std": null,
+    "nuclear_energy": 3.74833857735,
+    "core_energy": 0.0,
+    "final_total_energy": -15.347597049098717,
+    "final_params": [
+        -0.13232725538633966,
+        -0.0376834668307211
+    ],
+    "success": true,
+    "initial_params": [
+        0.0,
+        0.0
+    ],
+    "initial_energy": -19.072811711050644,
+    "initial_energy_std": null,
+    "optimizer": "L-BFGS-B",
+    "param_mode": "zeros",
+    "circuit_path": "/home/qlila/ResearchCode/GivensVQE/ansatz_circuits/UCCSD/BeH2/BeH2_2.json",
+    "nb_removed_dets": null,
+    "nb_givens": null,
+    "nb_params": 2,
+    "molecule": "BeH2",
+    "shots": null,
+    "nb_single_givens": null,
+    "nb_double_givens": null,
+    "param_path": null,
+    "energy_error": 0.0011055746104808861,
+    "circuit": "BeH2_2",
+    "shot_dir": "statevector",
+    "nb_samples": 1,
+    "nb_hamiltonian_measurements": null,
+    "givens_depth": 17,
+    "nb_qubits": 8,
+    "seed": null,
+    "nb_iterations": 4,
+    "termination_flag": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+    "nb_function_evals": 18,
+    "used_params_indices": null,
+    "jobs_dict": {},
+    "HQC_cost": 0
+}

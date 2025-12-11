@@ -1,0 +1,182 @@
+{
+    "final_elec_energy": [
+        -19.07389305773113,
+        0.006590599854107386
+    ],
+    "final_energy_std": null,
+    "nuclear_energy": 3.74833857735,
+    "final_total_energy": [
+        -15.325554480381129,
+        0.006590599854107386
+    ],
+    "final_params": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+    ],
+    "success": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+    ],
+    "initial_params": [],
+    "initial_energy": [
+        -19.07389305773113,
+        0.006590599854107386
+    ],
+    "initial_energy_std": null,
+    "optimizer": null,
+    "param_mode": "load_optimal",
+    "circuit_path": "/home/qlila/ResearchCode/GivensVQE/ansatz_circuits/ordered_circuits/BeH2/0_givens.qpy",
+    "nb_removed_dets": null,
+    "nb_givens": 0,
+    "molecule": "BeH2",
+    "shots": 1000,
+    "nb_single_givens": 0,
+    "nb_double_givens": 0,
+    "param_path": "/home/qlila/ResearchCode/GivensVQE/ansatz_circuits/ordered_circuits/BeH2/0_givens_optimal_params.npy",
+    "energy_error": [
+        0.023148143328068825,
+        0.006590599854107386
+    ],
+    "circuit": "0_givens",
+    "shot_dir": "1000_shots",
+    "nb_samples": 10,
+    "nb_hamiltonian_measurements": 16,
+    "givens_depth": 2,
+    "nb_qubits": 8,
+    "seed": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+    ],
+    "nb_iterations": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+    ],
+    "termination_flag": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+    ],
+    "nb_function_evals": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+    ],
+    "used_params_indices": [],
+    "jobs_dict": {
+        "0": [
+            null,
+            0.25613775454471616
+        ],
+        "1": [
+            null,
+            -0.04420028341383903
+        ],
+        "2": [
+            null,
+            0.12619150477035831
+        ],
+        "3": [
+            null,
+            -0.05720170725798897
+        ],
+        "4": [
+            null,
+            0.5667587643022101
+        ],
+        "5": [
+            null,
+            -0.5798527780675151
+        ],
+        "6": [
+            null,
+            0.06435574513630897
+        ],
+        "7": [
+            null,
+            0.05663300108098032
+        ],
+        "8": [
+            null,
+            -0.010439586489187054
+        ],
+        "9": [
+            null,
+            -0.0014975393630746092
+        ],
+        "10": [
+            null,
+            0.1022271958123401
+        ],
+        "11": [
+            null,
+            -0.9504689713271779
+        ],
+        "12": [
+            null,
+            -0.002117730974815399
+        ],
+        "13": [
+            null,
+            0.24447001121765208
+        ],
+        "14": [
+            null,
+            -3.5444631727720375
+        ],
+        "15": [
+            null,
+            -3.1081156981298848
+        ],
+        "id": [
+            null,
+            -12.193995749939267
+        ]
+    },
+    "HQC_cost": 0
+}

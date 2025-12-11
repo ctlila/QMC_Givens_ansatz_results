@@ -1,0 +1,230 @@
+{
+    "final_elec_energy": [
+        -19.09774339200538,
+        0.0075477427923976255
+    ],
+    "final_energy_std": null,
+    "nuclear_energy": 3.74833857735,
+    "final_total_energy": [
+        -15.349404814655378,
+        0.007547742792397626
+    ],
+    "final_params": [
+        [
+            0.2646634796684384,
+            0.07529700624595266,
+            0.0030290059146816243
+        ],
+        [
+            0.2646634796684384,
+            0.07529700624595266,
+            0.0030290059146816243
+        ],
+        [
+            0.2646634796684384,
+            0.07529700624595266,
+            0.0030290059146816243
+        ],
+        [
+            0.2646634796684384,
+            0.07529700624595266,
+            0.0030290059146816243
+        ],
+        [
+            0.2646634796684384,
+            0.07529700624595266,
+            0.0030290059146816243
+        ],
+        [
+            0.2646634796684384,
+            0.07529700624595266,
+            0.0030290059146816243
+        ],
+        [
+            0.2646634796684384,
+            0.07529700624595266,
+            0.0030290059146816243
+        ],
+        [
+            0.2646634796684384,
+            0.07529700624595266,
+            0.0030290059146816243
+        ],
+        [
+            0.2646634796684384,
+            0.07529700624595266,
+            0.0030290059146816243
+        ],
+        [
+            0.2646634796684384,
+            0.07529700624595266,
+            0.0030290059146816243
+        ]
+    ],
+    "success": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+    ],
+    "initial_params": [
+        0.2646634796684384,
+        0.07529700624595266,
+        0.0030290059146816243
+    ],
+    "initial_energy": [
+        -19.09774339200538,
+        0.0075477427923976255
+    ],
+    "initial_energy_std": null,
+    "optimizer": null,
+    "param_mode": "load_optimal",
+    "circuit_path": "/home/qlila/ResearchCode/GivensVQE/ansatz_circuits/ordered_circuits/BeH2/3_givens.qpy",
+    "nb_removed_dets": null,
+    "nb_givens": 3,
+    "molecule": "BeH2",
+    "shots": 1000,
+    "nb_single_givens": 0,
+    "nb_double_givens": 3,
+    "param_path": "/home/qlila/ResearchCode/GivensVQE/ansatz_circuits/ordered_circuits/BeH2/3_givens_optimal_params.npy",
+    "energy_error": [
+        -0.0007021909461833786,
+        0.0075477427923976255
+    ],
+    "circuit": "3_givens",
+    "shot_dir": "1000_shots",
+    "nb_samples": 10,
+    "nb_hamiltonian_measurements": 16,
+    "givens_depth": 4,
+    "nb_qubits": 8,
+    "seed": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+    ],
+    "nb_iterations": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+    ],
+    "termination_flag": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+    ],
+    "nb_function_evals": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+    ],
+    "used_params_indices": [
+        0,
+        1,
+        2
+    ],
+    "jobs_dict": {
+        "0": [
+            null,
+            0.2430541672340897
+        ],
+        "1": [
+            null,
+            -0.044252417877907756
+        ],
+        "2": [
+            null,
+            0.12008823461179534
+        ],
+        "3": [
+            null,
+            -0.056012184754915
+        ],
+        "4": [
+            null,
+            0.5552183526195168
+        ],
+        "5": [
+            null,
+            -0.583788906608663
+        ],
+        "6": [
+            null,
+            0.0539300587783051
+        ],
+        "7": [
+            null,
+            0.05848300512592159
+        ],
+        "8": [
+            null,
+            -0.004416485609821393
+        ],
+        "9": [
+            null,
+            -0.001591243139777828
+        ],
+        "10": [
+            null,
+            0.10235416646446713
+        ],
+        "11": [
+            null,
+            -0.91653903795407
+        ],
+        "12": [
+            null,
+            -0.0015240531267812529
+        ],
+        "13": [
+            null,
+            0.23800918444353006
+        ],
+        "14": [
+            null,
+            -3.5487892208574734
+        ],
+        "15": [
+            null,
+            -3.1094442706732037
+        ],
+        "id": [
+            null,
+            -12.193995749939267
+        ]
+    },
+    "HQC_cost": 0
+}
