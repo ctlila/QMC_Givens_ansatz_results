@@ -48,6 +48,7 @@
     "circuit_path": "/home/qlila/ResearchCode/GivensVQE/ansatz_circuits/ordered_circuits_to_run/N2/14_dets_16_givens.qpy",
     "nb_removed_dets": null,
     "nb_givens": null,
+    "nb_params": 16,
     "molecule": "N2",
     "backend": "QuantinuumBackend",
     "machine_name": "H1-Emulator",
@@ -129,5 +130,5 @@
         "ed9e34e9-fe72-453b-ba75-6924a82c824b",
         "b32eb7e2-6205-49d0-9a6f-0534199837b7"
     ],
-    "HQC_cost": 0
+    "HQC_cost": 22311.0
 }
