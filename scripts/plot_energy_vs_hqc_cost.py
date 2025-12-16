@@ -189,7 +189,9 @@ def plot_molecule(molecule, h1_1_data, h1_1e_data, statevector_data):
     plt.tight_layout()
 
     # Save figure
-    output_path = os.path.join(OUTPUT_DIR, f"{molecule}_energy_vs_hqc_cost.png")
+    molecule_dir = os.path.join(OUTPUT_DIR, molecule)
+    os.makedirs(molecule_dir, exist_ok=True)
+    output_path = os.path.join(molecule_dir, "energy_vs_hqc_cost.png")
     plt.savefig(output_path, dpi=300, bbox_inches="tight")
     print(f"Saved: {output_path}")
 
