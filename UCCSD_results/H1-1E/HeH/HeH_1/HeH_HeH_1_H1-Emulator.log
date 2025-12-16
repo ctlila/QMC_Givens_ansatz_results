@@ -1,0 +1,20 @@
+2025-12-16 12:53:24 | INFO | vqe_output | **************************************************
+
+2025-12-16 12:53:24 | INFO | vqe_output | Running VQE for HeH with 1000 shots.
+2025-12-16 12:53:24 | INFO | vqe_output | Taking 1 samples.
+2025-12-16 12:53:24 | INFO | vqe_output | Using Quantinuum H1-Emulator.
+2025-12-16 12:53:24 | INFO | vqe_output | Using circuit from /home/qlila/ResearchCode/GivensVQE/ansatz_circuits/UCCSD/HeH/HeH_1.json.
+2025-12-16 12:53:24 | INFO | vqe_output | Loading initial parameters from /home/qlila/ResearchCode/GivensVQE/ansatz_circuits/UCCSD/HeH/HeH_1_optimal_params.npy.
+2025-12-16 12:53:24 | INFO | vqe_output | No transpilation will be performed.
+2025-12-16 12:53:24 | INFO | vqe_output | Output will be saved to /home/qlila/ResearchCode/GivensVQE/results/UCCSD/H1-Emulator_results/HeH/HeH_1
+2025-12-16 12:53:24 | INFO | vqe_output | Sample 1/1
+2025-12-16 12:53:24 | INFO | vqe_output | Only evaluating energy for the initial parameters.
+2025-12-16 12:53:25 | INFO | vqe_output | Nuclear repulsion energy: 1.3744862621298704
+2025-12-16 12:53:25 | INFO | vqe_output | saved measurement expectation to /home/qlila/ResearchCode/GivensVQE/results/UCCSD/H1-Emulator_results/HeH/HeH_1/measurement_expectation.json
+2025-12-16 12:53:25 | INFO | vqe_output | saved operator to /home/qlila/ResearchCode/GivensVQE/results/UCCSD/H1-Emulator_results/HeH/HeH_1/operator.json
+2025-12-16 12:53:26 | INFO | vqe_output | Compiler optimisation level: 2
+2025-12-16 12:53:39 | INFO | vqe_output | submitted energy expectation job to backend.
+2025-12-16 12:53:39 | INFO | vqe_output | saved job reference to /home/qlila/ResearchCode/GivensVQE/results/UCCSD/H1-Emulator_results/HeH/HeH_1/energy_expectation_job
+2025-12-16 12:53:39 | INFO | vqe_output | VQE_result(final_elec_energy='TBD', final_energy_std='TBD', nuclear_energy=np.float64(1.3744862621298704), core_energy=0.0, final_total_energy='TBD', final_params=[-0.06379980440159412], success=None, initial_params=[-0.06379980440159412], initial_energy='TBD', initial_energy_std='TBD', optimizer=None, param_mode='load_optimal', circuit_path='/home/qlila/ResearchCode/GivensVQE/ansatz_circuits/UCCSD/HeH/HeH_1.json', nb_removed_dets=None, nb_givens=None, nb_params=1, molecule='HeH', backend='QuantinuumBackend', machine_name='H1-Emulator', shots=1000, nb_single_givens=None, nb_double_givens=None, param_path='/home/qlila/ResearchCode/GivensVQE/ansatz_circuits/UCCSD/HeH/HeH_1_optimal_params.npy', energy_error='TBD', circuit='HeH_1', shot_dir='1000_shots', nb_samples=1, nb_hamiltonian_measurements=4, givens_depth=9, nb_qubits=4, seed=None, nb_iterations=None, termination_flag=None, nb_function_evals=None, used_params_indices=None, jobs_dict='15e0221e-dce2-47e7-880b-6c4169a155c3', circuit_ids=['0447bfc6-8fac-4c00-9824-1e7f5abf51b8', 'ad7a99b0-93a6-4da5-87d7-f2efc70e5116', 'c7db681b-bae1-49b8-b319-0b16e9b74d8f', 'cc448d75-084c-49f2-9560-586d3e0838ca'], HQC_cost='TBD')
+2025-12-16 12:53:39 | INFO | vqe_output | Only one sample taken, returning single result.
+{'0': Counter({(1, 1, 0, 1): 539, (0, 1, 0, 1): 428, (1, 1, 1, 0): 8, (0, 1, 0, 0): 6, (1, 1, 1, 1): 6, (1, 1, 0, 0): 4, (0, 0, 0, 1): 2, (0, 1, 1, 0): 2, (1, 0, 1, 0): 2, (0, 0, 1, 0): 1, (0, 1, 1, 1): 1, (1, 0, 0, 1): 1}), '1': Counter({(1, 1, 1, 0): 297, (0, 1, 0, 1): 260, (1, 1, 0, 1): 214, (0, 1, 1, 0): 205, (0, 0, 0, 1): 4, (0, 1, 0, 0): 4, (1, 0, 1, 0): 4, (1, 1, 0, 0): 4, (0, 1, 1, 1): 3, (1, 0, 1, 1): 2, (1, 1, 1, 1): 2, (0, 0, 1, 0): 1}), '2': Counter({(0, 1, 1, 0): 494, (1, 1, 1, 0): 482, (1, 1, 0, 1): 6, (0, 1, 0, 0): 4, (0, 0, 1, 0): 3, (0, 1, 0, 1): 3, (1, 1, 0, 0): 3, (1, 1, 1, 1): 3, (1, 0, 1, 0): 2}), '3': Counter({(1, 0, 0, 1): 495, (1, 0, 1, 1): 473, (0, 1, 0, 1): 5, (1, 0, 0, 0): 5, (1, 1, 0, 1): 5, (0, 1, 1, 1): 4, (1, 1, 1, 1): 4, (0, 0, 0, 1): 3, (0, 0, 1, 1): 3, (1, 0, 1, 0): 3})}
