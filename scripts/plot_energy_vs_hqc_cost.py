@@ -11,9 +11,12 @@ matplotlib.use("Agg")  # Use non-interactive backend
 import matplotlib.pyplot as plt
 from collections import defaultdict
 
+include_uccsd = False
+
 # Configuration
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GIVENS_DIR = os.path.join(BASE_DIR, "Givens_results")
+UCCSD_DIR = os.path.join(BASE_DIR, "UCCSD_results")
 OUTPUT_DIR = os.path.join(BASE_DIR, "figures")
 
 # Ensure output directory exists
@@ -64,11 +67,19 @@ def load_results(backend_dir):
     return results
 
 
-def plot_molecule(molecule, h1_1_data, h1_1e_data, statevector_data):
+def plot_molecule(molecule, h1_1_data, h1_1e_data, statevector_data, uccsd_data=None):
     """Create plot for a single molecule."""
     fig, (ax1, ax2) = plt.subplots(
         2, 1, figsize=(10, 8), height_ratios=[3, 1], sharex=True
     )
+
+    # Get HF baseline from statevector 0_givens circuit
+    hf_baseline = None
+    if statevector_data:
+        for r in statevector_data:
+            if r["circuit"] == "0_givens" and r["nb_params"] == 0:
+                hf_baseline = r["energy_error_mean"]
+                break
 
     # Create mapping from circuit name to HQC cost from H1-1E data
     circuit_to_hqc = {}
@@ -89,7 +100,7 @@ def plot_molecule(molecule, h1_1_data, h1_1e_data, statevector_data):
             errors,
             yerr=error_bars,
             fmt="o-",
-            label="H1-1E",
+            label="H1-1E (Givens)",
             color="steelblue",
             markersize=8,
             linewidth=2,
@@ -122,7 +133,7 @@ def plot_molecule(molecule, h1_1_data, h1_1e_data, statevector_data):
             errors,
             yerr=error_bars,
             fmt="^-",
-            label="H1-1",
+            label="H1-1 (Givens)",
             color="darkorange",
             markersize=8,
             linewidth=2,
@@ -136,6 +147,36 @@ def plot_molecule(molecule, h1_1_data, h1_1e_data, statevector_data):
                 str(np),
                 (cost, error),
                 xytext=(5, -15),
+                textcoords="offset points",
+                fontsize=9,
+                fontweight="bold",
+                color="darkred",
+            )
+
+    # Plot UCCSD data (H1-1E)
+    if uccsd_data:
+        uccsd_sorted = sorted(uccsd_data, key=lambda x: x["HQC_cost"])
+        costs = [r["HQC_cost"] for r in uccsd_sorted]
+        errors = [r["energy_error_mean"] for r in uccsd_sorted]
+        params = [r["nb_params"] for r in uccsd_sorted]
+
+        ax1.plot(
+            costs,
+            errors,
+            "s-",
+            label="H1-1E (UCCSD)",
+            color="darkred",
+            markersize=8,
+            linewidth=2,
+            alpha=0.8,
+        )
+
+        # Add parameter count annotations
+        for cost, error, np in zip(costs, errors, params):
+            ax1.annotate(
+                str(np),
+                (cost, error),
+                xytext=(5, 10),
                 textcoords="offset points",
                 fontsize=9,
                 fontweight="bold",
@@ -169,6 +210,11 @@ def plot_molecule(molecule, h1_1_data, h1_1e_data, statevector_data):
                 markersize=6,
                 linewidth=1.5,
             )
+
+    # Plot HF baseline if available
+    if hf_baseline is not None:
+        ax1.axhline(y=hf_baseline, color='gray', linestyle=':', linewidth=2, 
+                   label='HF (SV)', alpha=0.7, zorder=1)
 
     # Format main plot
     ax1.set_ylabel("Energy Error (Ha)", fontsize=12, fontweight="bold")
@@ -206,12 +252,17 @@ def main():
     h1_1_results = load_results(os.path.join(GIVENS_DIR, "H1-1"))
     h1_1e_results = load_results(os.path.join(GIVENS_DIR, "H1-1E"))
     statevector_results = load_results(os.path.join(GIVENS_DIR, "statevector"))
+    if include_uccsd:
+        uccsd_results = load_results(os.path.join(UCCSD_DIR, "H1-1E"))
+    else:
+        uccsd_results = {}
 
     # Get all molecules
     all_molecules = set(
         list(h1_1_results.keys())
         + list(h1_1e_results.keys())
         + list(statevector_results.keys())
+        + list(uccsd_results.keys())
     )
 
     print(f"Found molecules: {sorted(all_molecules)}")
@@ -224,6 +275,7 @@ def main():
             h1_1_results.get(molecule, []),
             h1_1e_results.get(molecule, []),
             statevector_results.get(molecule, []),
+            uccsd_results.get(molecule, []),
         )
 
     print(f"\n✓ All plots saved to {OUTPUT_DIR}/")

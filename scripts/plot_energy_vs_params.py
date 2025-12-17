@@ -21,10 +21,10 @@ OUTPUT_DIR = os.path.join(BASE_DIR, "figures")
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 
-def load_givens_results():
-    """Load Givens results from H1-1E backend."""
+def load_givens_results(backend="H1-1E"):
+    """Load Givens results from specified backend."""
     results = defaultdict(list)
-    backend_dir = os.path.join(GIVENS_DIR, "H1-1E")
+    backend_dir = os.path.join(GIVENS_DIR, backend)
 
     if not os.path.exists(backend_dir):
         return results
@@ -68,10 +68,10 @@ def load_givens_results():
     return results
 
 
-def load_uccsd_results():
-    """Load UCCSD results from H1-1E backend."""
+def load_uccsd_results(backend="H1-1E"):
+    """Load UCCSD results from specified backend."""
     results = defaultdict(list)
-    backend_dir = os.path.join(UCCSD_DIR, "H1-1E")
+    backend_dir = os.path.join(UCCSD_DIR, backend)
 
     if not os.path.exists(backend_dir):
         return results
@@ -105,18 +105,28 @@ def load_uccsd_results():
     return results
 
 
-def plot_molecule(molecule, givens_data, uccsd_data):
+def plot_molecule(molecule, givens_data, uccsd_data, givens_sv_data, uccsd_sv_data):
     """Create plot for a single molecule comparing Givens and UCCSD."""
-    fig, ax = plt.subplots(figsize=(10, 6))
+    fig, (ax1, ax2) = plt.subplots(
+        2, 1, figsize=(10, 8), height_ratios=[3, 1], sharex=True
+    )
 
-    # Plot Givens data
+    # Get HF baseline from statevector 0_givens circuit
+    hf_baseline = None
+    if givens_sv_data:
+        for r in givens_sv_data:
+            if r.get("circuit") == "0_givens" and r.get("nb_params") == 0:
+                hf_baseline = r["energy_error_mean"]
+                break
+
+    # Plot Givens data on main plot
     if givens_data:
         givens_sorted = sorted(givens_data, key=lambda x: x["nb_params"])
         params = [r["nb_params"] for r in givens_sorted]
         errors = [r["energy_error_mean"] for r in givens_sorted]
         error_bars = [r["energy_error_std"] for r in givens_sorted]
 
-        ax.errorbar(
+        ax1.errorbar(
             params,
             errors,
             yerr=error_bars,
@@ -130,13 +140,13 @@ def plot_molecule(molecule, givens_data, uccsd_data):
             alpha=0.8,
         )
 
-    # Plot UCCSD data
+    # Plot UCCSD data on main plot
     if uccsd_data:
         uccsd_sorted = sorted(uccsd_data, key=lambda x: x["nb_params"])
         params = [r["nb_params"] for r in uccsd_sorted]
         errors = [r["energy_error"] for r in uccsd_sorted]
 
-        ax.plot(
+        ax1.plot(
             params,
             errors,
             "s-",
@@ -147,20 +157,58 @@ def plot_molecule(molecule, givens_data, uccsd_data):
             alpha=0.8,
         )
 
-    # Format plot
-    ax.set_xlabel("Number of Parameters", fontsize=13, fontweight="bold")
-    ax.set_ylabel("Energy Error (Ha)", fontsize=13, fontweight="bold")
-    ax.set_yscale("log")
-    ax.set_title(
+    # Plot Givens statevector data in subplot
+    if givens_sv_data:
+        givens_sv_sorted = sorted(givens_sv_data, key=lambda x: x["nb_params"])
+        params = [r["nb_params"] for r in givens_sv_sorted]
+        errors = [r["energy_error_mean"] for r in givens_sv_sorted]
+
+        ax2.plot(
+            params,
+            errors,
+            "o-",
+            label="Givens (SV)",
+            color="steelblue",
+            markersize=6,
+            linewidth=1.5,
+        )
+
+    # Plot UCCSD statevector data in subplot
+    if uccsd_sv_data:
+        uccsd_sv_sorted = sorted(uccsd_sv_data, key=lambda x: x["nb_params"])
+        params = [r["nb_params"] for r in uccsd_sv_sorted]
+        errors = [r["energy_error"] for r in uccsd_sv_sorted]
+
+        ax2.plot(
+            params,
+            errors,
+            "s-",
+            label="UCCSD (SV)",
+            color="darkred",
+            markersize=6,
+            linewidth=1.5,
+        )
+
+    # Plot HF baseline if available
+    if hf_baseline is not None:
+        ax1.axhline(y=hf_baseline, color='gray', linestyle=':', linewidth=2, 
+                   label='HF (SV)', alpha=0.7, zorder=1)
+
+    # Format main plot
+    ax1.set_ylabel("Energy Error (Ha)", fontsize=12, fontweight="bold")
+    ax1.set_yscale("log")
+    ax1.set_title(
         f"{molecule} - Energy Error vs Number of Parameters",
-        fontsize=15,
+        fontsize=14,
         fontweight="bold",
     )
-    ax.legend(fontsize=12, loc="best", framealpha=0.9)
-    ax.grid(True, alpha=0.3, linestyle="--")
+    ax1.legend(fontsize=11, loc="best")
 
-    # Add minor grid for better readability on log scale
-    ax.grid(True, which="minor", alpha=0.15, linestyle=":")
+    # Format statevector subplot
+    ax2.set_xlabel("Number of Parameters", fontsize=12, fontweight="bold")
+    ax2.set_ylabel("SV Error (Ha)", fontsize=11, fontweight="bold")
+    ax2.set_yscale("log")
+    ax2.legend(fontsize=10)
 
     plt.tight_layout()
 
@@ -178,12 +226,21 @@ def main():
     """Main function to generate all plots."""
     print("Loading results...")
 
-    # Load results
-    givens_results = load_givens_results()
-    uccsd_results = load_uccsd_results()
+    # Load H1-1E results
+    givens_results = load_givens_results("H1-1E")
+    uccsd_results = load_uccsd_results("H1-1E")
+
+    # Load statevector results
+    givens_sv_results = load_givens_results("statevector")
+    uccsd_sv_results = load_uccsd_results("statevector")
 
     # Get all molecules
-    all_molecules = set(list(givens_results.keys()) + list(uccsd_results.keys()))
+    all_molecules = set(
+        list(givens_results.keys())
+        + list(uccsd_results.keys())
+        + list(givens_sv_results.keys())
+        + list(uccsd_sv_results.keys())
+    )
 
     print(f"Found molecules: {sorted(all_molecules)}")
 
@@ -200,7 +257,13 @@ def main():
         print(f"  Givens points: {len(givens_data)}")
         print(f"  UCCSD points: {len(uccsd_data)}")
 
-        plot_molecule(molecule, givens_data, uccsd_data)
+        plot_molecule(
+            molecule,
+            givens_data,
+            uccsd_data,
+            givens_sv_results.get(molecule, []),
+            uccsd_sv_results.get(molecule, []),
+        )
 
     print(f"\n✓ All plots saved to {OUTPUT_DIR}/")
 
