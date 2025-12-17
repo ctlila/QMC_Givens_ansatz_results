@@ -191,8 +191,15 @@ def plot_molecule(molecule, givens_data, uccsd_data, givens_sv_data, uccsd_sv_da
 
     # Plot HF baseline if available
     if hf_baseline is not None:
-        ax1.axhline(y=hf_baseline, color='gray', linestyle=':', linewidth=2, 
-                   label='HF (SV)', alpha=0.7, zorder=1)
+        ax1.axhline(
+            y=hf_baseline,
+            color="gray",
+            linestyle=":",
+            linewidth=2,
+            label="HF (SV)",
+            alpha=0.7,
+            zorder=1,
+        )
 
     # Format main plot
     ax1.set_ylabel("Energy Error (Ha)", fontsize=12, fontweight="bold")
