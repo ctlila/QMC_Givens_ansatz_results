@@ -73,7 +73,7 @@ def load_results(backend_dir):
 def plot_molecule(molecule, h1_1_data, h1_1e_data, statevector_data, uccsd_data=None):
     """Create plot for a single molecule."""
     fig, (ax1, ax2) = plt.subplots(
-        2, 1, figsize=(10, 8), height_ratios=[5, 1], sharex=True, dpi=300
+        2, 1, figsize=(10, 8), height_ratios=[4, 1], sharex=True, dpi=300
     )
 
     # get number of qubits for title
@@ -110,8 +110,8 @@ def plot_molecule(molecule, h1_1_data, h1_1e_data, statevector_data, uccsd_data=
             fmt="o-",
             label="H1-1E (Emulator)",
             color=COLORS["H1-1E"],
-            markersize=9,
-            linewidth=2,
+            markersize=10,
+            linewidth=3,
             capsize=3,
             capthick=1.2,
             zorder=2,
@@ -143,8 +143,8 @@ def plot_molecule(molecule, h1_1_data, h1_1e_data, statevector_data, uccsd_data=
             "^-",
             label="H1-1 (QPU)",
             color=COLORS["H1-1"],
-            markersize=9,
-            linewidth=2,
+            markersize=10,
+            linewidth=3,
             zorder=3,
         )
 
@@ -214,8 +214,8 @@ def plot_molecule(molecule, h1_1_data, h1_1e_data, statevector_data, uccsd_data=
                 "o-",
                 label="Statevector",
                 color=COLORS["Statevector"],
-                markersize=5,
-                linewidth=1.2,
+                markersize=7,
+                linewidth=2,
             )
 
     # Plot HF baseline if available

@@ -135,8 +135,8 @@ def plot_molecule(molecule, givens_data, uccsd_data, givens_sv_data, uccsd_sv_da
             fmt="o-",
             label="QMC-Givens",
             color=COLORS["H1-1E"],
-            markersize=7,
-            linewidth=1.5,
+            markersize=10,
+            linewidth=3,
             capsize=3,
             capthick=1.2,
             zorder=3,
@@ -171,8 +171,8 @@ def plot_molecule(molecule, givens_data, uccsd_data, givens_sv_data, uccsd_sv_da
             "o-",
             label="QMC-Givens",
             color=COLORS["Statevector"],
-            markersize=5,
-            linewidth=1.2,
+            markersize=6,
+            linewidth=2,
             zorder=3,
         )
 
@@ -188,8 +188,8 @@ def plot_molecule(molecule, givens_data, uccsd_data, givens_sv_data, uccsd_sv_da
             "s-",
             label="UCCSD",
             color=COLORS["UCCSD"],
-            markersize=5,
-            linewidth=1.2,
+            markersize=7,
+            linewidth=2,
             zorder=1,
         )
 

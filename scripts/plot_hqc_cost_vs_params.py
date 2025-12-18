@@ -114,8 +114,8 @@ def plot_molecule(molecule, givens_data, uccsd_data):
             "o-",
             label="QMC-Givens",
             color=COLORS["Statevector"],
-            markersize=7,
-            linewidth=1.5,
+            markersize=10,
+            linewidth=3,
         )
 
     # Plot UCCSD data
