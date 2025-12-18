@@ -15,7 +15,7 @@ from collections import defaultdict
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GIVENS_DIR = os.path.join(BASE_DIR, "Givens_results")
 UCCSD_DIR = os.path.join(BASE_DIR, "UCCSD_results")
-OUTPUT_DIR = os.path.join(BASE_DIR, "figures")
+OUTPUT_DIR = os.path.join(BASE_DIR, "figures/pdf")
 
 # Ensure output directory exists
 os.makedirs(OUTPUT_DIR, exist_ok=True)
@@ -150,8 +150,8 @@ def plot_molecule(molecule, givens_data, uccsd_data):
     # Save figure
     molecule_dir = os.path.join(OUTPUT_DIR, molecule)
     os.makedirs(molecule_dir, exist_ok=True)
-    output_path = os.path.join(molecule_dir, "params_vs_hqc_cost.png")
-    plt.savefig(output_path, dpi=300, bbox_inches="tight")
+    output_path = os.path.join(molecule_dir, "params_vs_hqc_cost.pdf")
+    plt.savefig(output_path, bbox_inches="tight")
     print(f"Saved: {output_path}")
 
     plt.close()
