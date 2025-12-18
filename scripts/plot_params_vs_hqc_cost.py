@@ -10,12 +10,14 @@ import matplotlib
 matplotlib.use("Agg")  # Use non-interactive backend
 import matplotlib.pyplot as plt
 from collections import defaultdict
+from plot_style import COLORS
 
 # Configuration
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GIVENS_DIR = os.path.join(BASE_DIR, "Givens_results")
 UCCSD_DIR = os.path.join(BASE_DIR, "UCCSD_results")
 OUTPUT_DIR = os.path.join(BASE_DIR, "figures/pdf")
+
 
 # Ensure output directory exists
 os.makedirs(OUTPUT_DIR, exist_ok=True)
@@ -98,7 +100,7 @@ def load_uccsd_results():
 
 def plot_molecule(molecule, givens_data, uccsd_data):
     """Create plot for a single molecule comparing Givens and UCCSD."""
-    fig, ax = plt.subplots(figsize=(10, 6))
+    fig, ax = plt.subplots(figsize=(10, 6), dpi=300)
 
     # Plot Givens data
     if givens_data:
@@ -110,11 +112,10 @@ def plot_molecule(molecule, givens_data, uccsd_data):
             params,
             costs,
             "o-",
-            label="Givens",
-            color="steelblue",
-            markersize=10,
-            linewidth=2.5,
-            alpha=0.8,
+            label="QMC-Givens",
+            color=COLORS["Statevector"],
+            markersize=7,
+            linewidth=1.5,
         )
 
     # Plot UCCSD data
@@ -128,29 +129,41 @@ def plot_molecule(molecule, givens_data, uccsd_data):
             costs,
             "s-",
             label="UCCSD",
-            color="darkred",
-            markersize=10,
-            linewidth=2.5,
-            alpha=0.8,
+            color=COLORS["UCCSD"],
+            markersize=8,
+            linewidth=2,
         )
 
     # Format plot
-    ax.set_xlabel("Number of Parameters", fontsize=13, fontweight="bold")
-    ax.set_ylabel("HQC Cost", fontsize=13, fontweight="bold")
-    ax.set_title(
-        f"{molecule} - HQC Cost vs Number of Parameters (H1-1E)",
-        fontsize=15,
+    ax.set_xlabel(
+        "Number of Parameters",
+        fontsize=20,
         fontweight="bold",
     )
-    ax.legend(fontsize=12, loc="best", framealpha=0.9)
-    ax.grid(True, alpha=0.3, linestyle="--")
+    ax.set_ylabel(
+        "HQC Cost",
+        fontsize=20,
+        fontweight="bold",
+    )
+    # ax.set_title(
+    #     f"{molecule} - HQC Cost vs Number of Parameters (H1-1E)",
+    #     fontsize=15,
+    #     fontweight="bold",
+    # )
+    ax.legend(fontsize=20, loc="best", frameon=False)
+
+    # Remove top and right spines
+    ax.spines["top"].set_visible(False)
+    ax.spines["right"].set_visible(False)
+    # Increase tick label font sizes
+    ax.tick_params(axis="both", which="major", labelsize=14)
 
     plt.tight_layout()
 
     # Save figure
     molecule_dir = os.path.join(OUTPUT_DIR, molecule)
     os.makedirs(molecule_dir, exist_ok=True)
-    output_path = os.path.join(molecule_dir, "params_vs_hqc_cost.pdf")
+    output_path = os.path.join(molecule_dir, f"{molecule}_params_vs_hqc_cost.pdf")
     plt.savefig(output_path, bbox_inches="tight")
     print(f"Saved: {output_path}")
 

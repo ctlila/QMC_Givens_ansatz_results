@@ -219,16 +219,16 @@ def plot_molecule(molecule, h1_1_data, h1_1e_data, statevector_data, uccsd_data=
             )
 
     # Plot HF baseline if available
-    if hf_baseline is not None:
-        ax1.axhline(
-            y=hf_baseline,
-            color=COLORS["HF_baseline"],
-            linestyle="--",
-            linewidth=1.5,
-            label="Hartree–Fock",
-            alpha=0.6,
-            zorder=1,
-        )
+    # if hf_baseline is not None:
+    #     ax1.axhline(
+    #         y=hf_baseline,
+    #         color=COLORS["HF_baseline"],
+    #         linestyle="--",
+    #         linewidth=1.5,
+    #         label="Hartree–Fock",
+    #         alpha=0.6,
+    #         zorder=1,
+    #     )
 
     # Format main plot
     # ax1.set_yscale("log")

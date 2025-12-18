@@ -10,12 +10,14 @@ import matplotlib
 matplotlib.use("Agg")  # Use non-interactive backend
 import matplotlib.pyplot as plt
 from collections import defaultdict
+from plot_style import COLORS
 
 # Configuration
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GIVENS_DIR = os.path.join(BASE_DIR, "Givens_results")
 UCCSD_DIR = os.path.join(BASE_DIR, "UCCSD_results")
 OUTPUT_DIR = os.path.join(BASE_DIR, "figures/pdf")
+
 
 # Ensure output directory exists
 os.makedirs(OUTPUT_DIR, exist_ok=True)
@@ -108,7 +110,7 @@ def load_uccsd_results(backend="H1-1E"):
 def plot_molecule(molecule, givens_data, uccsd_data, givens_sv_data, uccsd_sv_data):
     """Create plot for a single molecule comparing Givens and UCCSD."""
     fig, (ax1, ax2) = plt.subplots(
-        2, 1, figsize=(10, 8), height_ratios=[3, 1], sharex=True
+        2, 1, figsize=(10, 8), height_ratios=[4, 1], sharex=True, dpi=300
     )
 
     # Get HF baseline from statevector 0_givens circuit
@@ -131,13 +133,13 @@ def plot_molecule(molecule, givens_data, uccsd_data, givens_sv_data, uccsd_sv_da
             errors,
             yerr=error_bars,
             fmt="o-",
-            label="Givens (H1-1E)",
-            color="steelblue",
-            markersize=10,
-            linewidth=2.5,
-            capsize=5,
-            capthick=2,
-            alpha=0.8,
+            label="QMC-Givens",
+            color=COLORS["H1-1E"],
+            markersize=7,
+            linewidth=1.5,
+            capsize=3,
+            capthick=1.2,
+            zorder=3,
         )
 
     # Plot UCCSD data on main plot
@@ -150,11 +152,11 @@ def plot_molecule(molecule, givens_data, uccsd_data, givens_sv_data, uccsd_sv_da
             params,
             errors,
             "s-",
-            label="UCCSD (H1-1E)",
-            color="darkred",
-            markersize=10,
-            linewidth=2.5,
-            alpha=0.8,
+            label="UCCSD",
+            color=COLORS["UCCSD"],
+            markersize=8,
+            linewidth=2,
+            zorder=1,
         )
 
     # Plot Givens statevector data in subplot
@@ -167,10 +169,11 @@ def plot_molecule(molecule, givens_data, uccsd_data, givens_sv_data, uccsd_sv_da
             params,
             errors,
             "o-",
-            label="Givens (SV)",
-            color="steelblue",
-            markersize=6,
-            linewidth=1.5,
+            label="QMC-Givens",
+            color=COLORS["Statevector"],
+            markersize=5,
+            linewidth=1.2,
+            zorder=3,
         )
 
     # Plot UCCSD statevector data in subplot
@@ -183,46 +186,101 @@ def plot_molecule(molecule, givens_data, uccsd_data, givens_sv_data, uccsd_sv_da
             params,
             errors,
             "s-",
-            label="UCCSD (SV)",
-            color="darkred",
-            markersize=6,
-            linewidth=1.5,
-        )
-
-    # Plot HF baseline if available
-    if hf_baseline is not None:
-        ax1.axhline(
-            y=hf_baseline,
-            color="gray",
-            linestyle=":",
-            linewidth=2,
-            label="HF (SV)",
-            alpha=0.7,
+            label="UCCSD",
+            color=COLORS["UCCSD"],
+            markersize=5,
+            linewidth=1.2,
             zorder=1,
         )
 
+    # Plot HF baseline if available
+    # if hf_baseline is not None:
+    #     ax1.axhline(
+    #         y=hf_baseline,
+    #         color=COLORS["HF_baseline"],
+    #         linestyle="--",
+    #         linewidth=1.5,
+    #         label="Hartree–Fock",
+    #         alpha=0.6,
+    #         zorder=1,
+    #     )
+
     # Format main plot
-    ax1.set_ylabel("Energy Error (Ha)", fontsize=12, fontweight="bold")
-    ax1.set_yscale("log")
-    ax1.set_title(
-        f"{molecule} - Energy Error vs Number of Parameters",
-        fontsize=14,
-        fontweight="bold",
+    # ax1.set_yscale("log")
+    # ax1.set_title(
+    #     f"{molecule} - Energy Error vs Number of Parameters",
+    #     fontsize=14,
+    #     fontweight="bold",
+    # )
+
+    # Reorder legend handles: QMC-Givens, UCCSD, then Hartree-Fock last
+    handles, labels = ax1.get_legend_handles_labels()
+    desired_order = ["QMC-Givens", "UCCSD", "Hartree–Fock"]
+    reordered_handles = []
+    reordered_labels = []
+    for label in desired_order:
+        if label in labels:
+            idx = labels.index(label)
+            reordered_handles.append(handles[idx])
+            reordered_labels.append(label)
+    ax1.legend(
+        reordered_handles, reordered_labels, fontsize=20, loc="best", frameon=False
     )
-    ax1.legend(fontsize=11, loc="best")
+
+    # Remove top and right spines
+    ax1.spines["top"].set_visible(False)
+    ax1.spines["right"].set_visible(False)
+    # Increase tick label font sizes
+    ax1.tick_params(axis="both", which="major", labelsize=14)
 
     # Format statevector subplot
-    ax2.set_xlabel("Number of Parameters", fontsize=12, fontweight="bold")
-    ax2.set_ylabel("SV Error (Ha)", fontsize=11, fontweight="bold")
+    ax2.set_xlabel(
+        "Number of Parameters",
+        fontsize=20,
+        fontweight="bold",
+    )
     ax2.set_yscale("log")
-    ax2.legend(fontsize=10)
+
+    # Reorder legend handles to match ax1: QMC-Givens, UCCSD, then Hartree-Fock last
+    handles2, labels2 = ax2.get_legend_handles_labels()
+    desired_order = ["QMC-Givens", "UCCSD", "Hartree–Fock"]
+    reordered_handles2 = []
+    reordered_labels2 = []
+    for label in desired_order:
+        if label in labels2:
+            idx = labels2.index(label)
+            reordered_handles2.append(handles2[idx])
+            reordered_labels2.append(label)
+    ax2.legend(
+        reordered_handles2, reordered_labels2, fontsize=20, loc="best", frameon=False
+    )
+    ax2.spines["top"].set_visible(False)
+    ax2.spines["right"].set_visible(False)
+    # Increase tick label font sizes
+    ax2.tick_params(axis="both", which="major", labelsize=12)
+
+    # Figure-level shared Y label
+    if hasattr(fig, "supylabel"):
+        fig.supylabel("Energy Error (Ha)", fontsize=20, fontweight="bold")
+    else:
+        fig.text(
+            0.02,
+            0.5,
+            "Energy Error (Ha)",
+            rotation="vertical",
+            va="center",
+            ha="center",
+            fontsize=20,
+            fontweight="bold",
+        )
 
     plt.tight_layout()
+    plt.subplots_adjust(left=0.12)
 
     # Save figure
     molecule_dir = os.path.join(OUTPUT_DIR, molecule)
     os.makedirs(molecule_dir, exist_ok=True)
-    output_path = os.path.join(molecule_dir, "energy_vs_params.pdf")
+    output_path = os.path.join(molecule_dir, f"{molecule}_energy_vs_params.pdf")
     plt.savefig(output_path, bbox_inches="tight")
     print(f"Saved: {output_path}")
 
