@@ -163,7 +163,7 @@ def plot_molecule(molecule, givens_data, uccsd_data):
     # Save figure
     molecule_dir = os.path.join(OUTPUT_DIR, molecule)
     os.makedirs(molecule_dir, exist_ok=True)
-    output_path = os.path.join(molecule_dir, f"{molecule}_params_vs_hqc_cost.pdf")
+    output_path = os.path.join(molecule_dir, f"{molecule}_hqc_cost_vs_params.pdf")
     plt.savefig(output_path, bbox_inches="tight")
     print(f"Saved: {output_path}")
 
