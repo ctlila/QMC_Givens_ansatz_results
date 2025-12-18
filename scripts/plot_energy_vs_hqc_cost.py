@@ -10,6 +10,7 @@ import matplotlib
 matplotlib.use("Agg")  # Use non-interactive backend
 import matplotlib.pyplot as plt
 from collections import defaultdict
+from plot_style import COLORS
 
 include_uccsd = False
 
@@ -18,6 +19,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GIVENS_DIR = os.path.join(BASE_DIR, "Givens_results")
 UCCSD_DIR = os.path.join(BASE_DIR, "UCCSD_results")
 OUTPUT_DIR = os.path.join(BASE_DIR, "figures/pdf")
+
 
 # Ensure output directory exists
 os.makedirs(OUTPUT_DIR, exist_ok=True)
@@ -61,6 +63,7 @@ def load_results(backend_dir):
                     "energy_error_std": error_std,
                     "nb_params": nb_params,
                     "circuit": data.get("circuit", circuit_dir),
+                    "nb_qubits": data.get("nb_qubits", 0),
                 }
             )
 
@@ -70,8 +73,13 @@ def load_results(backend_dir):
 def plot_molecule(molecule, h1_1_data, h1_1e_data, statevector_data, uccsd_data=None):
     """Create plot for a single molecule."""
     fig, (ax1, ax2) = plt.subplots(
-        2, 1, figsize=(10, 8), height_ratios=[3, 1], sharex=True
+        2, 1, figsize=(10, 8), height_ratios=[5, 1], sharex=True, dpi=300
     )
+
+    # get number of qubits for title
+    nb_qubits = None
+    if statevector_data:
+        nb_qubits = statevector_data[0].get("nb_qubits", None)
 
     # Get HF baseline from statevector 0_givens circuit
     hf_baseline = None
@@ -100,12 +108,13 @@ def plot_molecule(molecule, h1_1_data, h1_1e_data, statevector_data, uccsd_data=
             errors,
             yerr=error_bars,
             fmt="o-",
-            label="H1-1E (Givens)",
-            color="steelblue",
-            markersize=8,
+            label="H1-1E (Emulator)",
+            color=COLORS["H1-1E"],
+            markersize=9,
             linewidth=2,
-            capsize=4,
-            capthick=1.5,
+            capsize=3,
+            capthick=1.2,
+            zorder=2,
         )
 
         # Add parameter count annotations
@@ -113,11 +122,11 @@ def plot_molecule(molecule, h1_1_data, h1_1e_data, statevector_data, uccsd_data=
             ax1.annotate(
                 str(np),
                 (cost, error),
-                xytext=(5, 5),
+                xytext=(6, -8),
                 textcoords="offset points",
-                fontsize=9,
+                fontsize=10,
                 fontweight="bold",
-                color="darkblue",
+                color=COLORS["H1-1E_annotation"],
             )
 
     # Plot H1-1 data
@@ -128,17 +137,15 @@ def plot_molecule(molecule, h1_1_data, h1_1e_data, statevector_data, uccsd_data=
         error_bars = [r["energy_error_std"] for r in h1_1_sorted]
         params = [r["nb_params"] for r in h1_1_sorted]
 
-        ax1.errorbar(
+        ax1.plot(
             costs,
             errors,
-            yerr=error_bars,
-            fmt="^-",
-            label="H1-1 (Givens)",
-            color="darkorange",
-            markersize=8,
+            "^-",
+            label="H1-1 (QPU)",
+            color=COLORS["H1-1"],
+            markersize=9,
             linewidth=2,
-            capsize=4,
-            capthick=1.5,
+            zorder=3,
         )
 
         # Add parameter count annotations
@@ -146,11 +153,11 @@ def plot_molecule(molecule, h1_1_data, h1_1e_data, statevector_data, uccsd_data=
             ax1.annotate(
                 str(np),
                 (cost, error),
-                xytext=(5, -15),
+                xytext=(7, -12),
                 textcoords="offset points",
-                fontsize=9,
+                fontsize=10,
                 fontweight="bold",
-                color="darkred",
+                color=COLORS["H1-1_annotation"],
             )
 
     # Plot UCCSD data (H1-1E)
@@ -165,8 +172,8 @@ def plot_molecule(molecule, h1_1_data, h1_1e_data, statevector_data, uccsd_data=
             errors,
             "s-",
             label="H1-1E (UCCSD)",
-            color="darkred",
-            markersize=8,
+            color=COLORS["UCCSD"],
+            markersize=9,
             linewidth=2,
             alpha=0.8,
         )
@@ -178,9 +185,9 @@ def plot_molecule(molecule, h1_1_data, h1_1e_data, statevector_data, uccsd_data=
                 (cost, error),
                 xytext=(5, 10),
                 textcoords="offset points",
-                fontsize=9,
+                fontsize=10,
                 fontweight="bold",
-                color="darkred",
+                color=COLORS["UCCSD_annotation"],
             )
 
     # Plot statevector data in subplot - match circuit names to HQC costs
@@ -206,46 +213,87 @@ def plot_molecule(molecule, h1_1_data, h1_1e_data, statevector_data, uccsd_data=
                 errors,
                 "o-",
                 label="Statevector",
-                color="green",
-                markersize=6,
-                linewidth=1.5,
+                color=COLORS["Statevector"],
+                markersize=5,
+                linewidth=1.2,
             )
 
     # Plot HF baseline if available
     if hf_baseline is not None:
         ax1.axhline(
             y=hf_baseline,
-            color="gray",
-            linestyle=":",
-            linewidth=2,
-            label="HF (SV)",
-            alpha=0.7,
+            color=COLORS["HF_baseline"],
+            linestyle="--",
+            linewidth=1.5,
+            label="Hartree–Fock",
+            alpha=0.6,
             zorder=1,
         )
 
     # Format main plot
-    ax1.set_ylabel("Energy Error (Ha)", fontsize=12, fontweight="bold")
-    ax1.set_yscale("log")
-    ax1.legend(fontsize=11, loc="best")
-    ax1.grid(True, alpha=0.3)
-    ax1.set_title(
-        f"{molecule} - Energy Error vs HQC Cost", fontsize=14, fontweight="bold"
-    )
+    # ax1.set_yscale("log")
+
+    # Reorder legend handles to put HF baseline last
+    handles, labels = ax1.get_legend_handles_labels()
+    if "Hartree–Fock" in labels:
+        hf_idx = labels.index("Hartree–Fock")
+        handles = handles[:hf_idx] + handles[hf_idx + 1 :] + [handles[hf_idx]]
+        labels = labels[:hf_idx] + labels[hf_idx + 1 :] + [labels[hf_idx]]
+    ax1.legend(handles, labels, fontsize=20, loc="best", frameon=False)
+
+    # Remove top and right spines
+    ax1.spines["top"].set_visible(False)
+    ax1.spines["right"].set_visible(False)
+    # Increase tick label font sizes
+    ax1.tick_params(axis="both", which="major", labelsize=14)
+    # ax1.spines["bottom"].set_visible(False)
+
+    # ax1.set_title(
+    #     f"{molecule.replace('_6_spinorbs', '')} ({nb_qubits} qubits)",
+    #     fontsize=14,
+    #     pad=10,
+    # )
 
     # Format statevector subplot
-    ax2.set_xlabel("HQC Cost", fontsize=12, fontweight="bold")
-    ax2.set_ylabel("SV Error (Ha)", fontsize=11, fontweight="bold")
+    ax2.set_xlabel(
+        "HQC Cost",
+        fontsize=20,
+        fontweight="bold",
+        labelpad=6,
+    )
     ax2.set_yscale("log")
-    ax2.legend(fontsize=10)
-    ax2.grid(True, alpha=0.3)
+    ax2.legend(fontsize=18, frameon=False)
+
+    # Remove top and right spines
+    ax2.spines["top"].set_visible(False)
+    ax2.spines["right"].set_visible(False)
+    # Increase tick label font sizes
+    ax2.tick_params(axis="x", which="major", labelsize=14)
+    ax2.tick_params(axis="y", which="major", labelsize=10)
+
+    # Figure-level shared Y label
+    if hasattr(fig, "supylabel"):
+        fig.supylabel("Energy Error (Ha)", fontsize=20, fontweight="bold")
+    else:
+        fig.text(
+            0.02,
+            0.5,
+            "Energy Error (Ha)",
+            rotation="vertical",
+            va="center",
+            ha="center",
+            fontsize=20,
+            fontweight="bold",
+        )
 
     plt.tight_layout()
+    plt.subplots_adjust(left=0.12)
 
     # Save figure
     molecule_dir = os.path.join(OUTPUT_DIR, molecule)
     os.makedirs(molecule_dir, exist_ok=True)
-    output_path = os.path.join(molecule_dir, "energy_vs_hqc_cost.pdf")
-    plt.savefig(output_path, bbox_inches="tight")
+    output_path = os.path.join(molecule_dir, f"{molecule}_energy_vs_hqc_cost.pdf")
+    plt.savefig(output_path, bbox_inches="tight")  # DPI not needed for vector PDF
     print(f"Saved: {output_path}")
 
     plt.close()
