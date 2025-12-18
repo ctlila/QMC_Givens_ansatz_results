@@ -16,7 +16,7 @@ from plot_style import COLORS
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GIVENS_DIR = os.path.join(BASE_DIR, "Givens_results")
 UCCSD_DIR = os.path.join(BASE_DIR, "UCCSD_results")
-OUTPUT_DIR = os.path.join(BASE_DIR, "figures/pdf")
+OUTPUT_DIR = os.path.join(BASE_DIR, "figures")
 
 
 # Ensure output directory exists
