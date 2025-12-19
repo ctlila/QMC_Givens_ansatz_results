@@ -128,8 +128,8 @@ def plot_molecule(molecule, givens_data, uccsd_data):
             params,
             costs,
             "s-",
-            label="UCCSD",
-            color=COLORS["UCCSD"],
+            label="QMC-UCC",
+            color=COLORS["QMC-UCC"],
             markersize=8,
             linewidth=2,
         )

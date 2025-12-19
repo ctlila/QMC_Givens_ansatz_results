@@ -152,8 +152,8 @@ def plot_molecule(molecule, givens_data, uccsd_data, givens_sv_data, uccsd_sv_da
             params,
             errors,
             "s-",
-            label="UCCSD",
-            color=COLORS["UCCSD"],
+            label="QMC-UCC",
+            color=COLORS["QMC-UCC"],
             markersize=8,
             linewidth=2,
             zorder=1,
@@ -186,8 +186,8 @@ def plot_molecule(molecule, givens_data, uccsd_data, givens_sv_data, uccsd_sv_da
             params,
             errors,
             "s-",
-            label="UCCSD",
-            color=COLORS["UCCSD"],
+            label="QMC-UCC",
+            color=COLORS["QMC-UCC"],
             markersize=7,
             linewidth=2,
             zorder=1,
@@ -215,7 +215,7 @@ def plot_molecule(molecule, givens_data, uccsd_data, givens_sv_data, uccsd_sv_da
 
     # Reorder legend handles: QMC-Givens, UCCSD, then Hartree-Fock last
     handles, labels = ax1.get_legend_handles_labels()
-    desired_order = ["QMC-Givens", "UCCSD", "Hartree–Fock"]
+    desired_order = ["QMC-Givens", "QMC-UCC", "Hartree–Fock"]
     reordered_handles = []
     reordered_labels = []
     for label in desired_order:
@@ -238,12 +238,13 @@ def plot_molecule(molecule, givens_data, uccsd_data, givens_sv_data, uccsd_sv_da
         "Number of Parameters",
         fontsize=20,
         fontweight="bold",
+        labelpad=6,
     )
     ax2.set_yscale("log")
 
     # Reorder legend handles to match ax1: QMC-Givens, UCCSD, then Hartree-Fock last
     handles2, labels2 = ax2.get_legend_handles_labels()
-    desired_order = ["QMC-Givens", "UCCSD", "Hartree–Fock"]
+    desired_order = ["QMC-Givens", "QMC-UCC", "Hartree–Fock"]
     reordered_handles2 = []
     reordered_labels2 = []
     for label in desired_order:
@@ -257,7 +258,8 @@ def plot_molecule(molecule, givens_data, uccsd_data, givens_sv_data, uccsd_sv_da
     ax2.spines["top"].set_visible(False)
     ax2.spines["right"].set_visible(False)
     # Increase tick label font sizes
-    ax2.tick_params(axis="both", which="major", labelsize=12)
+    ax2.tick_params(axis="x", which="major", labelsize=14)
+    ax2.tick_params(axis="y", which="major", labelsize=12)
 
     # Figure-level shared Y label
     if hasattr(fig, "supylabel"):

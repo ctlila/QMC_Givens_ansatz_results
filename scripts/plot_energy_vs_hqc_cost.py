@@ -172,7 +172,7 @@ def plot_molecule(molecule, h1_1_data, h1_1e_data, statevector_data, uccsd_data=
             errors,
             "s-",
             label="H1-1E (UCCSD)",
-            color=COLORS["UCCSD"],
+            color=COLORS["QMC-UCC"],
             markersize=9,
             linewidth=2,
             alpha=0.8,
@@ -187,7 +187,7 @@ def plot_molecule(molecule, h1_1_data, h1_1e_data, statevector_data, uccsd_data=
                 textcoords="offset points",
                 fontsize=10,
                 fontweight="bold",
-                color=COLORS["UCCSD_annotation"],
+                color=COLORS["UCC_annotatation"],
             )
 
     # Plot statevector data in subplot - match circuit names to HQC costs
@@ -269,7 +269,7 @@ def plot_molecule(molecule, h1_1_data, h1_1e_data, statevector_data, uccsd_data=
     ax2.spines["right"].set_visible(False)
     # Increase tick label font sizes
     ax2.tick_params(axis="x", which="major", labelsize=14)
-    ax2.tick_params(axis="y", which="major", labelsize=10)
+    ax2.tick_params(axis="y", which="major", labelsize=12)
 
     # Figure-level shared Y label
     if hasattr(fig, "supylabel"):

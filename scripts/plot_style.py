@@ -10,8 +10,8 @@ COLORS = {
     "H1-1E": "#0077B6",
     "H1-1_annotation": "#7D2528",
     "H1-1E_annotation": "#001f3f",
-    "UCCSD": "#784c00",
-    "UCCSD_annotation": "#291211",
+    "QMC-UCC": "#784c00",
+    "UCC_annotatation": "#291211",
     "Statevector": "#48C9B0",
     "HF_baseline": "#444444",
 }
