@@ -1,23 +1,99 @@
 {
-    "final_elec_energy": -18.978605905385976,
+    "final_elec_energy": [
+        -18.95463549214923,
+        0.02298108164623729
+    ],
     "final_energy_std": null,
     "nuclear_energy": 3.74833857735,
     "core_energy": 0.0,
-    "final_total_energy": -15.230267328035975,
-    "final_params": [
-        -0.1400812290822435,
-        0.026637686190895325,
-        -0.03664332877978441,
-        0.027920404217084825
+    "final_total_energy": [
+        -15.206296914799225,
+        0.022981081646237286
     ],
-    "success": null,
+    "final_params": [
+        [
+            -0.1400812290822435,
+            0.026637686190895325,
+            -0.03664332877978441,
+            0.027920404217084825
+        ],
+        [
+            -0.1400812290822435,
+            0.026637686190895325,
+            -0.03664332877978441,
+            0.027920404217084825
+        ],
+        [
+            -0.1400812290822435,
+            0.026637686190895325,
+            -0.03664332877978441,
+            0.027920404217084825
+        ],
+        [
+            -0.1400812290822435,
+            0.026637686190895325,
+            -0.03664332877978441,
+            0.027920404217084825
+        ],
+        [
+            -0.1400812290822435,
+            0.026637686190895325,
+            -0.03664332877978441,
+            0.027920404217084825
+        ],
+        [
+            -0.1400812290822435,
+            0.026637686190895325,
+            -0.03664332877978441,
+            0.027920404217084825
+        ],
+        [
+            -0.1400812290822435,
+            0.026637686190895325,
+            -0.03664332877978441,
+            0.027920404217084825
+        ],
+        [
+            -0.1400812290822435,
+            0.026637686190895325,
+            -0.03664332877978441,
+            0.027920404217084825
+        ],
+        [
+            -0.1400812290822435,
+            0.026637686190895325,
+            -0.03664332877978441,
+            0.027920404217084825
+        ],
+        [
+            -0.1400812290822435,
+            0.026637686190895325,
+            -0.03664332877978441,
+            0.027920404217084825
+        ]
+    ],
+    "success": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+    ],
     "initial_params": [
         -0.1400812290822435,
         0.026637686190895325,
         -0.03664332877978441,
         0.027920404217084825
     ],
-    "initial_energy": -18.978605905385976,
+    "initial_energy": [
+        -18.95463549214923,
+        0.02298108164623729
+    ],
     "initial_energy_std": null,
     "optimizer": null,
     "param_mode": "load_optimal",
@@ -32,36 +108,83 @@
     "nb_single_givens": null,
     "nb_double_givens": null,
     "param_path": "/home/qlila/ResearchCode/GivensVQE/ansatz_circuits/UCCSD/BeH2/BeH2_4_optimal_params.npy",
-    "energy_error": 0.11843529567322264,
+    "energy_error": [
+        0.14240570890997156,
+        0.02298108164623729
+    ],
     "circuit": "BeH2_4",
     "shot_dir": "1000_shots",
-    "nb_samples": 1,
+    "nb_samples": 10,
     "nb_hamiltonian_measurements": 16,
     "givens_depth": 21,
     "nb_qubits": 8,
-    "seed": null,
-    "nb_iterations": null,
-    "termination_flag": null,
-    "nb_function_evals": null,
-    "used_params_indices": null,
-    "jobs_dict": "d74f881e-66e8-42d6-8cce-8e9abfbc2eb6",
-    "circuit_ids": [
-        "ed287d7c-6003-416b-aeae-bfd041ef4ee2",
-        "0d18da5f-d674-4564-9278-0551ef3e97a4",
-        "037bc34f-903b-4b8d-8f96-413bf2204324",
-        "bcc0e9c6-e681-4111-b3c3-3bbec8ad4666",
-        "a83c1b8b-1139-46ac-9100-f3019d3ca2ab",
-        "6c457437-1ff0-49aa-8f2e-d4899449f757",
-        "c55a8998-ca8b-4151-a18b-3bc961cd9348",
-        "4953ae3a-0787-4199-9c13-924c2c610033",
-        "d3358ca0-8a58-46ca-b15c-840a6ece3e93",
-        "5ee3a583-0b7f-4fc0-99b9-32c7a33e75a1",
-        "eac97f3c-1dd5-4521-8614-93f42bbf7027",
-        "aed7311d-692f-40b1-bec3-2b94056265b9",
-        "49cf1ffa-f6e7-46c6-92d7-d8a2cd77b299",
-        "42392946-4310-4e2e-9b05-7df2ca535467",
-        "1ad15e6c-f1b8-4ab4-94e9-33fbe737ac37",
-        "036fd15a-6ea5-46e3-9058-2bb792e7ef98"
+    "seed": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
     ],
-    "HQC_cost": 3436.600000000001
+    "nb_iterations": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+    ],
+    "termination_flag": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+    ],
+    "nb_function_evals": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+    ],
+    "used_params_indices": null,
+    "jobs_dict": "30c77440-8498-4d90-8b53-4ade2ad03848",
+    "circuit_ids": [
+        "b15e822e-4308-4ee7-aeb5-3f646c5a9178",
+        "9c7ddd7a-c548-4837-85a6-d258ecc9383e",
+        "59737df1-4380-433b-8c85-db709cc858c2",
+        "31b39524-8d6e-4b47-b0ac-8b5c5ed65aa5",
+        "b8301b17-21ee-4c22-8e25-c5147367d3f7",
+        "821f677a-698a-49fb-ad01-7fb9607b6cce",
+        "54545222-db5a-4029-af25-b7317aaa9343",
+        "484beff0-089f-4609-9a11-a8e1b33af7b6",
+        "41d14cb1-836f-4635-861b-598dfa451c35",
+        "98ecbc03-2d6b-4d17-bce2-93ce05655529",
+        "a5443da1-d02e-4920-b769-10805d00fc28",
+        "68313aee-c064-4671-ae72-95527300965a",
+        "bc0f4795-014d-44ef-9e1e-408513195db8",
+        "3c6fec7e-ebd5-4013-befa-407c92479d98",
+        "72cd6831-82cf-4643-9b9c-e3b6618ef2fc",
+        "1f40e99e-eb46-4174-b5dd-6b49e871de57"
+    ],
+    "HQC_cost": 3449.4
 }
