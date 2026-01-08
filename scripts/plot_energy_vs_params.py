@@ -91,15 +91,25 @@ def load_uccsd_results(backend="H1-1E"):
             with open(result_path, "r") as f:
                 data = json.load(f)
 
-            # Get energy error and parameters
+            # Handle energy error (could be single value or [mean, std])
             energy_error = data.get("energy_error", 0)
+            if isinstance(energy_error, list):
+                error_mean, error_std = energy_error
+            else:
+                error_mean, error_std = energy_error, 0
+
+            # Handle final_params (could be single list or list of lists)
             final_params = data.get("final_params", [])
-            nb_params = len(final_params)
+            if final_params and isinstance(final_params[0], list):
+                nb_params = len(final_params[0])
+            else:
+                nb_params = len(final_params)
 
             results[molecule].append(
                 {
                     "nb_params": nb_params,
-                    "energy_error": abs(energy_error),
+                    "energy_error_mean": abs(error_mean),
+                    "energy_error_std": error_std,
                     "circuit": data.get("circuit", circuit_dir),
                 }
             )
@@ -146,18 +156,35 @@ def plot_molecule(molecule, givens_data, uccsd_data, givens_sv_data, uccsd_sv_da
     if uccsd_data:
         uccsd_sorted = sorted(uccsd_data, key=lambda x: x["nb_params"])
         params = [r["nb_params"] for r in uccsd_sorted]
-        errors = [r["energy_error"] for r in uccsd_sorted]
+        errors = [r["energy_error_mean"] for r in uccsd_sorted]
+        error_bars = [r["energy_error_std"] for r in uccsd_sorted]
+        has_errors = any(e > 0 for e in error_bars)
 
-        ax1.plot(
-            params,
-            errors,
-            "s-",
-            label="QMC-UCC",
-            color=COLORS["QMC-UCC"],
-            markersize=8,
-            linewidth=2,
-            zorder=1,
-        )
+        if has_errors:
+            ax1.errorbar(
+                params,
+                errors,
+                yerr=error_bars,
+                fmt="s-",
+                label="QMC-UCC",
+                color=COLORS["QMC-UCC"],
+                markersize=8,
+                linewidth=2,
+                capsize=3,
+                capthick=1.2,
+                zorder=1,
+            )
+        else:
+            ax1.plot(
+                params,
+                errors,
+                "s-",
+                label="QMC-UCC",
+                color=COLORS["QMC-UCC"],
+                markersize=8,
+                linewidth=2,
+                zorder=1,
+            )
 
     # Plot Givens statevector data in subplot
     if givens_sv_data:
@@ -180,18 +207,35 @@ def plot_molecule(molecule, givens_data, uccsd_data, givens_sv_data, uccsd_sv_da
     if uccsd_sv_data:
         uccsd_sv_sorted = sorted(uccsd_sv_data, key=lambda x: x["nb_params"])
         params = [r["nb_params"] for r in uccsd_sv_sorted]
-        errors = [r["energy_error"] for r in uccsd_sv_sorted]
+        errors = [r["energy_error_mean"] for r in uccsd_sv_sorted]
+        error_bars = [r["energy_error_std"] for r in uccsd_sv_sorted]
+        has_errors = any(e > 0 for e in error_bars)
 
-        ax2.plot(
-            params,
-            errors,
-            "s-",
-            label="QMC-UCC",
-            color=COLORS["QMC-UCC"],
-            markersize=7,
-            linewidth=2,
-            zorder=1,
-        )
+        if has_errors:
+            ax2.errorbar(
+                params,
+                errors,
+                yerr=error_bars,
+                fmt="s-",
+                label="QMC-UCC",
+                color=COLORS["QMC-UCC"],
+                markersize=7,
+                linewidth=2,
+                capsize=3,
+                capthick=1.2,
+                zorder=1,
+            )
+        else:
+            ax2.plot(
+                params,
+                errors,
+                "s-",
+                label="QMC-UCC",
+                color=COLORS["QMC-UCC"],
+                markersize=7,
+                linewidth=2,
+                zorder=1,
+            )
 
     # Plot HF baseline if available
     # if hf_baseline is not None:

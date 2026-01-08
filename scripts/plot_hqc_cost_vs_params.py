@@ -76,7 +76,9 @@ def load_uccsd_results():
             continue
 
         for circuit_dir in os.listdir(molecule_path):
-            result_path = os.path.join(molecule_path, circuit_dir, "vqe_result.json")
+            result_path = os.path.join(
+                molecule_path, circuit_dir, "temp_vqe_result.json"
+            )
             if not os.path.exists(result_path):
                 continue
 
@@ -182,7 +184,7 @@ def main():
     all_molecules = set(list(givens_results.keys()) + list(uccsd_results.keys()))
 
     print(f"Found molecules: {sorted(all_molecules)}")
-
+    all_molecules = ["N2"]
     # Create plot for each molecule
     for molecule in sorted(all_molecules):
         givens_data = givens_results.get(molecule, [])
