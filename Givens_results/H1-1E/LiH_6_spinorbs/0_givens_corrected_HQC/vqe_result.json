@@ -1,0 +1,130 @@
+{
+    "final_elec_energy": [
+        -9.016763725741608,
+        0.01148827626336309
+    ],
+    "final_energy_std": null,
+    "nuclear_energy": 1.133951166257143,
+    "core_energy": 0.0,
+    "final_total_energy": [
+        -7.882812559484464,
+        0.01148827626336309
+    ],
+    "final_params": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+    ],
+    "success": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+    ],
+    "initial_params": [],
+    "initial_energy": [
+        -9.016763725741608,
+        0.01148827626336309
+    ],
+    "initial_energy_std": null,
+    "optimizer": null,
+    "param_mode": "load_optimal",
+    "circuit_path": "/home/qlila/ResearchCode/GivensVQE/ansatz_circuits/ordered_circuits/LiH_6_spinorbs/0_givens.qpy",
+    "nb_removed_dets": null,
+    "nb_givens": 0,
+    "nb_params": null,
+    "molecule": "LiH_6_spinorbs",
+    "backend": "QuantinuumBackend",
+    "machine_name": "H1-Emulator",
+    "shots": 1000,
+    "nb_single_givens": 0,
+    "nb_double_givens": 0,
+    "param_path": "/home/qlila/ResearchCode/GivensVQE/ansatz_circuits/ordered_circuits/LiH_6_spinorbs/0_givens_optimal_params.npy",
+    "energy_error": [
+        0.06182278932725591,
+        0.01148827626336309
+    ],
+    "circuit": "0_givens",
+    "shot_dir": "1000_shots",
+    "nb_samples": 10,
+    "nb_hamiltonian_measurements": 10,
+    "givens_depth": 2,
+    "nb_qubits": 6,
+    "reference_run": "/home/qlila/ResearchCode/GivensVQE/results/HF/H1-1_results/LiH_6_spinorbs/0_givens",
+    "seed": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+    ],
+    "nb_iterations": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+    ],
+    "termination_flag": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+    ],
+    "nb_function_evals": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+    ],
+    "used_params_indices": [],
+    "jobs_dict": "f9a8e759-6f93-48b0-aff5-9b7f3a774619",
+    "circuit_ids": [
+        "d2b52af5-3704-44b4-83bc-9356aa9535bd",
+        "6046d47b-60af-4f20-99e9-134152262bc5",
+        "f7f70e02-e9b9-40e2-afc5-f1d272eed115",
+        "b0a2cc73-ad99-4d95-87ca-56ad10cd8e02",
+        "1d2992bf-1412-49f3-8b9b-c7ae69c45857",
+        "d4369466-79a7-465c-a102-a814f2339c71",
+        "6cf40e1e-3aa8-488d-a68f-13296a176e19",
+        "30523257-8d28-4784-8b4f-31cfd9319c92",
+        "62cbf04f-ae21-46da-b1d5-b28faa5c6a4c",
+        "23482297-57a5-448c-aa13-8081b8358222"
+    ],
+    "HQC_cost": 227.8
+}
