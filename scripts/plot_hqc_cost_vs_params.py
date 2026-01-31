@@ -76,9 +76,14 @@ def load_uccsd_results():
             continue
 
         for circuit_dir in os.listdir(molecule_path):
-            result_path = os.path.join(
-                molecule_path, circuit_dir, "temp_vqe_result.json"
-            )
+            if "N2" in molecule:
+                result_path = os.path.join(
+                    molecule_path, circuit_dir, "temp_vqe_result.json"
+                )
+            else:
+                result_path = os.path.join(
+                    molecule_path, circuit_dir, "vqe_result.json"
+                )
             if not os.path.exists(result_path):
                 continue
 
@@ -87,7 +92,18 @@ def load_uccsd_results():
 
             # Get parameters and HQC cost
             final_params = data.get("final_params", [])
-            nb_params = len(final_params)
+            if final_params and isinstance(final_params[0], list):
+                nb_params = len(final_params[0])
+            else:
+                nb_params = len(final_params)
+
+            results[molecule].append(
+                {
+                    "nb_params": nb_params,
+                    "HQC_cost": data.get("HQC_cost", 0),
+                    "circuit": data.get("circuit", circuit_dir),
+                }
+            )
 
             results[molecule].append(
                 {
@@ -125,7 +141,8 @@ def plot_molecule(molecule, givens_data, uccsd_data):
         uccsd_sorted = sorted(uccsd_data, key=lambda x: x["nb_params"])
         params = [r["nb_params"] for r in uccsd_sorted]
         costs = [r["HQC_cost"] for r in uccsd_sorted]
-
+        print(params)
+        print(costs)
         ax.plot(
             params,
             costs,
@@ -184,7 +201,7 @@ def main():
     all_molecules = set(list(givens_results.keys()) + list(uccsd_results.keys()))
 
     print(f"Found molecules: {sorted(all_molecules)}")
-    all_molecules = ["N2"]
+    # all_molecules = ["N2"]
     # Create plot for each molecule
     for molecule in sorted(all_molecules):
         givens_data = givens_results.get(molecule, [])
