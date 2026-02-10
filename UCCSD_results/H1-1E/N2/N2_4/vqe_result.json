@@ -1,9 +1,9 @@
 {
-    "final_elec_energy": "TBD",
-    "final_energy_std": "TBD",
+    "final_elec_energy": -130.68932091910892,
+    "final_energy_std": null,
     "nuclear_energy": 23.615376443606557,
     "core_energy": -100.02780752661155,
-    "final_total_energy": "TBD",
+    "final_total_energy": -107.07394447550237,
     "final_params": [
         -0.043767656552810875,
         -0.04094606541029754,
@@ -17,8 +17,8 @@
         -0.18322492780303584,
         -0.034345972343040036
     ],
-    "initial_energy": "TBD",
-    "initial_energy_std": "TBD",
+    "initial_energy": -130.68932091910892,
+    "initial_energy_std": null,
     "optimizer": null,
     "param_mode": "load_optimal",
     "circuit_path": "/home/qlila/ResearchCode/GivensVQE/ansatz_circuits/UCCSD/N2/N2_4.json",
@@ -32,7 +32,7 @@
     "nb_single_givens": null,
     "nb_double_givens": null,
     "param_path": "/home/qlila/ResearchCode/GivensVQE/ansatz_circuits/UCCSD/N2/N2_4_optimal_params.npy",
-    "energy_error": "TBD",
+    "energy_error": 0.5664268205085818,
     "circuit": "N2_4",
     "shot_dir": "1000_shots",
     "nb_samples": 1,
@@ -81,5 +81,5 @@
         "9f131a49-7b6e-4a3b-ac6c-732de445ad0a",
         "919b8185-797f-4135-bb8d-a37ec9a3ed48"
     ],
-    "HQC_cost": "TBD"
+    "HQC_cost": 17070.8
 }
