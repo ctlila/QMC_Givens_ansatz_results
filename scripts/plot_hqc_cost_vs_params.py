@@ -76,14 +76,14 @@ def load_uccsd_results():
             continue
 
         for circuit_dir in os.listdir(molecule_path):
-            if "N2" in molecule:
-                result_path = os.path.join(
-                    molecule_path, circuit_dir, "temp_vqe_result.json"
-                )
-            else:
-                result_path = os.path.join(
-                    molecule_path, circuit_dir, "vqe_result.json"
-                )
+            # if "N2" in molecule:
+            #     result_path = os.path.join(
+            #         molecule_path, circuit_dir, "temp_vqe_result.json"
+            #     )
+            # else:
+            result_path = os.path.join(
+                molecule_path, circuit_dir, "vqe_result.json"
+            )
             if not os.path.exists(result_path):
                 continue
 

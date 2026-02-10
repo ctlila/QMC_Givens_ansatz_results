@@ -105,14 +105,15 @@ def load_uccsd_results(backend="H1-1E"):
             else:
                 nb_params = len(final_params)
 
-            results[molecule].append(
-                {
-                    "nb_params": nb_params,
-                    "energy_error_mean": abs(error_mean),
-                    "energy_error_std": error_std,
-                    "circuit": data.get("circuit", circuit_dir),
-                }
-            )
+            if isinstance(error_mean, float):
+                results[molecule].append(
+                    {
+                        "nb_params": nb_params,
+                        "energy_error_mean": abs(error_mean),
+                        "energy_error_std": error_std,
+                        "circuit": data.get("circuit", circuit_dir),
+                    }
+                )
 
     return results
 
