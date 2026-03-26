@@ -286,6 +286,7 @@ def plot_molecule(molecule, givens_data, uccsd_data, givens_sv_data, uccsd_sv_da
         labelpad=6,
     )
     ax2.set_yscale("log")
+    # ax2.set_ylim([1e-2, 0])
 
     # Reorder legend handles to match ax1: QMC-Givens, UCCSD, then Hartree-Fock last
     handles2, labels2 = ax2.get_legend_handles_labels()
