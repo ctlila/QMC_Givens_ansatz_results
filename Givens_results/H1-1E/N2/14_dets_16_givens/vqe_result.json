@@ -56,7 +56,7 @@
     "nb_single_givens": 0,
     "nb_double_givens": 16,
     "param_path": "/home/qlila/ResearchCode/GivensVQE/ansatz_circuits/ordered_circuits/N2/14_dets_16_givens_optimal_params.npy",
-    "energy_error": 0.7363777712259889,
+    "energy_error": 0.74871026883838,
     "circuit": "14_dets_16_givens",
     "shot_dir": "1000_shots",
     "nb_samples": 1,

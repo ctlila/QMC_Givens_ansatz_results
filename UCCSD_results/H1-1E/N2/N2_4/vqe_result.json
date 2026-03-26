@@ -32,7 +32,7 @@
     "nb_single_givens": null,
     "nb_double_givens": null,
     "param_path": "/home/qlila/ResearchCode/GivensVQE/ansatz_circuits/UCCSD/N2/N2_4_optimal_params.npy",
-    "energy_error": 0.5664268205085818,
+    "energy_error": 0.5787593181209729,
     "circuit": "N2_4",
     "shot_dir": "1000_shots",
     "nb_samples": 1,

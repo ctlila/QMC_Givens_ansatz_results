@@ -54,7 +54,7 @@
     "nb_single_givens": null,
     "nb_double_givens": null,
     "param_path": null,
-    "energy_error": 0.024011382326193598,
+    "energy_error": 0.03634387993858468,
     "circuit": "N2_16",
     "shot_dir": "statevector",
     "nb_samples": 1,

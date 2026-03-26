@@ -27,7 +27,7 @@
     "nb_single_givens": 0,
     "nb_double_givens": 2,
     "param_path": "/Users/lila.cadi/ResearchCode/GivensVQE/ansatz_circuits/ordered_circuits/N2/N2_2_givens_optimal_params.npy",
-    "energy_error": 0.1684501439900714,
+    "energy_error": 0.1807826416024625,
     "circuit": "N2_2_givens",
     "shot_dir": "1000_shots",
     "nb_samples": 1,
