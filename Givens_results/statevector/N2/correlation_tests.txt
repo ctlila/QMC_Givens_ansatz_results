@@ -1,0 +1,68 @@
+Do 10 runs for FCIQMC, for each run collect:
+- Iteration at which each det is spawned
+- Final coefficient at the end of each run
+
+For each run do a Spearman rank test to determine correlation
+
+Results:
+
+HeH
+---- 
+Spearman correlation between medians and coefficients: -1.000, p-value: 0.000
+Spearman correlation between means and coefficients: -1.000, p-value: 0.000
+
+Spearman correlations for each of 10 runs stats:
+Mean ρ: -0.900
+Median ρ: -0.900
+Std Dev: 0.105
+
+Notes:
+- Neg sign negative correlation (determinants that are spawned earlier tend to have larger final amplitudes.)
+- Median and Mean are same, so not driven by outliers
+- Std dev is small
+- A value like −0.300 indicates a real but not extremely strong trend—likely affected by stochastic noise and variability in FCIQMC dynamics.
+- For 4 points hard to draw conclusions.
+
+LiH
+---
+Spearman correlation between medians and coefficients: -0.783333, p-value: 0.012519873019449882
+Spearman correlation between means and coefficients: -0.783333, p-value: 0.012519873019449882
+
+Spearman correlations for each of 10 runs stats:
+Mean ρ: -0.684
+Median ρ: -0.742
+Std Dev: 0.133
+
+BeH2
+----
+Spearman correlation between medians and coefficients: -0.939394, p-value: 5.484052998513666e-05
+Spearman correlation between means and coefficients: -0.939394, p-value: 5.484052998513666e-05
+
+Spearman correlations for each of 10 runs stats:
+Mean ρ: -0.899
+Median ρ: -0.915
+Std Dev: 0.061
+
+LiH 12 spinorbs
+--------------
+Spearman correlation between medians and coefficients: -0.783, p-value: 0.000
+Spearman correlation between means and coefficients: -0.779, p-value: 0.000
+
+Spearman correlations for each of 10 runs stats:
+Mean ρ: -0.743
+Median ρ: -0.737
+Std Dev: 0.049
+
+
+N2
+__
+Spearman correlation between medians and coefficients: -0.855041, p-value: 8.3893711666708e-224
+Spearman correlation between means and coefficients: -0.849548, p-value: 5.021770135289749e-218
+
+Spearman correlations for each of 10 runs stats:
+Mean ρ: -0.717
+Median ρ: -0.717
+Std Dev: 0.021
+
+
+
