@@ -328,7 +328,7 @@ def plot_molecule(molecule, givens_data, uccsd_data, givens_sv_data, uccsd_sv_da
     # Save figure
     molecule_dir = os.path.join(OUTPUT_DIR, molecule)
     os.makedirs(molecule_dir, exist_ok=True)
-    output_path = os.path.join(molecule_dir, f"{molecule}_energy_vs_params.pdf")
+    output_path = os.path.join(molecule_dir, f"{molecule}_energy_vs_params.svg")
     plt.savefig(output_path, bbox_inches="tight")
     print(f"Saved: {output_path}")
 
