@@ -81,9 +81,7 @@ def load_uccsd_results():
             #         molecule_path, circuit_dir, "temp_vqe_result.json"
             #     )
             # else:
-            result_path = os.path.join(
-                molecule_path, circuit_dir, "vqe_result.json"
-            )
+            result_path = os.path.join(molecule_path, circuit_dir, "vqe_result.json")
             if not os.path.exists(result_path):
                 continue
 
@@ -182,7 +180,7 @@ def plot_molecule(molecule, givens_data, uccsd_data):
     # Save figure
     molecule_dir = os.path.join(OUTPUT_DIR, molecule)
     os.makedirs(molecule_dir, exist_ok=True)
-    output_path = os.path.join(molecule_dir, f"{molecule}_hqc_cost_vs_params.pdf")
+    output_path = os.path.join(molecule_dir, f"{molecule}_hqc_cost_vs_params.svg")
     plt.savefig(output_path, bbox_inches="tight")
     print(f"Saved: {output_path}")
 
