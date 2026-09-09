@@ -41,6 +41,36 @@ python scripts/plot_energy_vs_params.py
 **Output:** Saves PNG files to `figures/` directory:
 - `{molecule}_energy_vs_params.png`
 
+### 3. `compare_shots_methods.py`
+Overlays the 1000-shot results of **all four ansatz methods** on the same axes,
+one figure per molecule:
+
+| method | source |
+| --- | --- |
+| QMC-Givens | `Givens_results/shots` |
+| QMC-UCC | `UCCSD_results/shots` |
+| ADAPT-VQE (UCC pool) | `ADAPT-VQE_results/uccsd/shots_results` |
+| ADAPT-VQE (generalized pool) | `ADAPT-VQE_results/generalized/shots_results` |
+
+**Features:**
+- Left panel: `|energy error|` vs #params, log scale, each method's noiseless
+  statevector run drawn faintly behind it (toggle `SHOW_STATEVECTOR`)
+- Right panel: signed error in mHa, linear, with sample-std error bars
+  (QMC-Givens ran `nb_samples = 10`; the others are single draws), plus a
+  ±chemical-accuracy band
+- Only BeH2 and LiH_6_spinorbs have QMC-Givens/QMC-UCC shots data; N2 shows the
+  two ADAPT pools only
+
+**Usage:**
+```bash
+python3 scripts/compare_shots_methods.py
+```
+
+**Output:** Saves to `figures/shots_comparison/`:
+- `methods_{molecule}_shots.png`
+- `methods_all_molecules_shots.png`
+- `shots_methods_summary.csv`
+
 ---
 
 ## Customization
