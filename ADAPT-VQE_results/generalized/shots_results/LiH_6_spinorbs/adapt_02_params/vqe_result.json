@@ -1,0 +1,82 @@
+{
+    "final_elec_energy": -9.07522014737647,
+    "final_energy_std": null,
+    "nuclear_energy": 1.133951166257143,
+    "core_energy": 0.0,
+    "final_total_energy": -7.941268981119327,
+    "final_params": [],
+    "success": null,
+    "initial_params": [],
+    "initial_energy": -9.07522014737647,
+    "initial_energy_std": null,
+    "optimizer": null,
+    "param_mode": "None",
+    "circuit_path": "/home/lc892/ResearchCode/GivensVQE/ansatz_circuits/adapt-vqe/generalized//LiH_6_spinorbs/adapt_02_params.qpy",
+    "nb_removed_dets": null,
+    "nb_givens": null,
+    "nb_params": 2,
+    "molecule": "LiH_6_spinorbs",
+    "shots": 1000,
+    "nb_single_givens": 0,
+    "nb_double_givens": 0,
+    "param_path": null,
+    "energy_error": 0.0033663676923936237,
+    "circuit": "adapt_02_params",
+    "shot_dir": "1000_shots",
+    "nb_samples": 1,
+    "nb_hamiltonian_measurements": 10,
+    "givens_depth": 82,
+    "nb_qubits": 6,
+    "seed": null,
+    "nb_iterations": null,
+    "termination_flag": null,
+    "nb_function_evals": null,
+    "used_params_indices": [],
+    "jobs_dict": {
+        "0": [
+            null,
+            -0.32093362240537193
+        ],
+        "1": [
+            null,
+            -0.0021794538716387152
+        ],
+        "2": [
+            null,
+            -1.7350454416687004
+        ],
+        "3": [
+            null,
+            0.12491452268821386
+        ],
+        "4": [
+            null,
+            0.0046972073168957355
+        ],
+        "5": [
+            null,
+            -1.6436997883028053
+        ],
+        "6": [
+            null,
+            -0.06324726663965594
+        ],
+        "7": [
+            null,
+            0.3433598538397744
+        ],
+        "8": [
+            null,
+            -8.697748803733525e-06
+        ],
+        "9": [
+            null,
+            -2.096328379328993e-06
+        ],
+        "id": [
+            null,
+            -5.7830753642560015
+        ]
+    },
+    "HQC_cost": 0
+}

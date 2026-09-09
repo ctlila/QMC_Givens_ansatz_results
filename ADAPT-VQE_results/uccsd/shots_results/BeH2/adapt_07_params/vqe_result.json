@@ -1,0 +1,106 @@
+{
+    "final_elec_energy": -19.11325676460369,
+    "final_energy_std": null,
+    "nuclear_energy": 3.74833857735,
+    "core_energy": 0.0,
+    "final_total_energy": -15.36491818725369,
+    "final_params": [],
+    "success": null,
+    "initial_params": [],
+    "initial_energy": -19.11325676460369,
+    "initial_energy_std": null,
+    "optimizer": null,
+    "param_mode": "None",
+    "circuit_path": "/home/lc892/ResearchCode/GivensVQE/ansatz_circuits/adapt-vqe/uccsd//BeH2/adapt_07_params.qpy",
+    "nb_removed_dets": null,
+    "nb_givens": null,
+    "nb_params": 7,
+    "molecule": "BeH2",
+    "shots": 1000,
+    "nb_single_givens": 0,
+    "nb_double_givens": 0,
+    "param_path": null,
+    "energy_error": -0.01621556354449183,
+    "circuit": "adapt_07_params",
+    "shot_dir": "1000_shots",
+    "nb_samples": 1,
+    "nb_hamiltonian_measurements": 16,
+    "givens_depth": 567,
+    "nb_qubits": 8,
+    "seed": null,
+    "nb_iterations": null,
+    "termination_flag": null,
+    "nb_function_evals": null,
+    "used_params_indices": [],
+    "jobs_dict": {
+        "0": [
+            null,
+            0.24514888249767097
+        ],
+        "1": [
+            null,
+            -0.04357216235133484
+        ],
+        "2": [
+            null,
+            0.1228716446158735
+        ],
+        "3": [
+            null,
+            -0.05520407042219637
+        ],
+        "4": [
+            null,
+            0.5535813332836119
+        ],
+        "5": [
+            null,
+            -0.5946304924677824
+        ],
+        "6": [
+            null,
+            0.05236862804637693
+        ],
+        "7": [
+            null,
+            0.05376233849041845
+        ],
+        "8": [
+            null,
+            -0.007858371747238456
+        ],
+        "9": [
+            null,
+            0.002280296164954699
+        ],
+        "10": [
+            null,
+            0.10408038541865805
+        ],
+        "11": [
+            null,
+            -0.9248400163867351
+        ],
+        "12": [
+            null,
+            0.0016483817952036583
+        ],
+        "13": [
+            null,
+            0.23025447923145517
+        ],
+        "14": [
+            null,
+            -3.5486591270996595
+        ],
+        "15": [
+            null,
+            -3.110493143733716
+        ],
+        "id": [
+            null,
+            -12.193995749939257
+        ]
+    },
+    "HQC_cost": 0
+}
