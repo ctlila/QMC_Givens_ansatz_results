@@ -16,6 +16,7 @@ from plot_style import COLORS
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GIVENS_DIR = os.path.join(BASE_DIR, "Givens_results")
 UCCSD_DIR = os.path.join(BASE_DIR, "UCCSD_results")
+ADAPT_DIR = os.path.join(BASE_DIR, "ADAPT-VQE_results")
 OUTPUT_DIR = os.path.join(BASE_DIR, "figures")
 
 
@@ -118,10 +119,108 @@ def load_uccsd_results(backend="H1-1E"):
     return results
 
 
-def plot_molecule(molecule, givens_data, uccsd_data, givens_sv_data, uccsd_sv_data):
+def load_adapt_results(pool, backend="statevector"):
+    """Load ADAPT-VQE results for a given operator pool ('uccsd' or 'generalized')."""
+    results = defaultdict(list)
+    pool_dir = os.path.join(ADAPT_DIR, pool, backend)
+
+    if not os.path.exists(pool_dir):
+        return results
+
+    for molecule in os.listdir(pool_dir):
+        molecule_path = os.path.join(pool_dir, molecule)
+        if not os.path.isdir(molecule_path):
+            continue
+
+        for circuit_dir in os.listdir(molecule_path):
+            result_path = os.path.join(molecule_path, circuit_dir, "vqe_result.json")
+            if not os.path.exists(result_path):
+                continue
+
+            with open(result_path, "r") as f:
+                data = json.load(f)
+
+            energy_error = data.get("energy_error", 0)
+            if isinstance(energy_error, list):
+                error_mean, error_std = energy_error
+            else:
+                error_mean, error_std = energy_error, 0
+
+            # ADAPT-VQE results store the parameter count explicitly
+            nb_params = data.get("nb_params")
+            if nb_params is None:
+                final_params = data.get("final_params", [])
+                if final_params and isinstance(final_params[0], list):
+                    nb_params = len(final_params[0])
+                else:
+                    nb_params = len(final_params)
+
+            results[molecule].append(
+                {
+                    "nb_params": nb_params,
+                    "energy_error_mean": abs(error_mean),
+                    "energy_error_std": error_std,
+                    "circuit": data.get("circuit", circuit_dir),
+                }
+            )
+
+    return results
+
+
+def _plot_series(ax, data, label, color, marker, markersize=6, zorder=2):
+    """Plot a sorted energy-error series on the given axis.
+
+    Draws error bars when any point carries a non-zero std (e.g. hardware
+    runs); otherwise a plain line.
+    """
+    if not data:
+        return
+    data_sorted = sorted(data, key=lambda x: x["nb_params"])
+    params = [r["nb_params"] for r in data_sorted]
+    errors = [r["energy_error_mean"] for r in data_sorted]
+    error_bars = [r["energy_error_std"] for r in data_sorted]
+
+    if any(e > 0 for e in error_bars):
+        ax.errorbar(
+            params,
+            errors,
+            yerr=error_bars,
+            fmt=marker + "-",
+            label=label,
+            color=color,
+            markersize=markersize,
+            linewidth=2,
+            capsize=3,
+            capthick=1.2,
+            zorder=zorder,
+        )
+    else:
+        ax.plot(
+            params,
+            errors,
+            marker + "-",
+            label=label,
+            color=color,
+            markersize=markersize,
+            linewidth=2,
+            zorder=zorder,
+        )
+
+
+def plot_molecule(
+    molecule,
+    givens_data,
+    uccsd_data,
+    givens_sv_data,
+    uccsd_sv_data,
+    adapt_uccsd_sv_data=None,
+    adapt_generalized_sv_data=None,
+    adapt_uccsd_hw_data=None,
+    adapt_generalized_hw_data=None,
+):
     """Create plot for a single molecule comparing Givens and UCCSD."""
     fig, (ax1, ax2) = plt.subplots(
-        2, 1, figsize=(10, 8), height_ratios=[4, 1], sharex=True, dpi=300
+        2, 1, figsize=(10, 9), height_ratios=[3, 2], sharex=True, dpi=300
     )
 
     # Get HF baseline from statevector 0_givens circuit
@@ -187,6 +286,26 @@ def plot_molecule(molecule, givens_data, uccsd_data, givens_sv_data, uccsd_sv_da
                 zorder=1,
             )
 
+    # Plot ADAPT-VQE hardware (H1-1E) data on main plot
+    _plot_series(
+        ax1,
+        adapt_uccsd_hw_data,
+        "ADAPT-VQE (UCC pool)",
+        COLORS["ADAPT-UCC"],
+        "^",
+        markersize=8,
+        zorder=2,
+    )
+    _plot_series(
+        ax1,
+        adapt_generalized_hw_data,
+        "ADAPT-VQE (generalized pool)",
+        COLORS["ADAPT-generalized"],
+        "D",
+        markersize=8,
+        zorder=2,
+    )
+
     # Plot Givens statevector data in subplot
     if givens_sv_data:
         givens_sv_sorted = sorted(givens_sv_data, key=lambda x: x["nb_params"])
@@ -238,6 +357,22 @@ def plot_molecule(molecule, givens_data, uccsd_data, givens_sv_data, uccsd_sv_da
                 zorder=1,
             )
 
+    # Plot ADAPT-VQE statevector data in subplot
+    _plot_series(
+        ax2,
+        adapt_uccsd_sv_data,
+        "ADAPT-VQE (UCC pool)",
+        COLORS["ADAPT-UCC"],
+        "^",
+    )
+    _plot_series(
+        ax2,
+        adapt_generalized_sv_data,
+        "ADAPT-VQE (generalized pool)",
+        COLORS["ADAPT-generalized"],
+        "D",
+    )
+
     # Plot HF baseline if available
     # if hf_baseline is not None:
     #     ax1.axhline(
@@ -260,7 +395,13 @@ def plot_molecule(molecule, givens_data, uccsd_data, givens_sv_data, uccsd_sv_da
 
     # Reorder legend handles: QMC-Givens, UCCSD, then Hartree-Fock last
     handles, labels = ax1.get_legend_handles_labels()
-    desired_order = ["QMC-Givens", "QMC-UCC", "Hartree–Fock"]
+    desired_order = [
+        "QMC-Givens",
+        "QMC-UCC",
+        "ADAPT-VQE (UCC pool)",
+        "ADAPT-VQE (generalized pool)",
+        "Hartree–Fock",
+    ]
     reordered_handles = []
     reordered_labels = []
     for label in desired_order:
@@ -290,7 +431,13 @@ def plot_molecule(molecule, givens_data, uccsd_data, givens_sv_data, uccsd_sv_da
 
     # Reorder legend handles to match ax1: QMC-Givens, UCCSD, then Hartree-Fock last
     handles2, labels2 = ax2.get_legend_handles_labels()
-    desired_order = ["QMC-Givens", "QMC-UCC", "Hartree–Fock"]
+    desired_order = [
+        "QMC-Givens",
+        "QMC-UCC",
+        "ADAPT-VQE (UCC pool)",
+        "ADAPT-VQE (generalized pool)",
+        "Hartree–Fock",
+    ]
     reordered_handles2 = []
     reordered_labels2 = []
     for label in desired_order:
@@ -299,7 +446,12 @@ def plot_molecule(molecule, givens_data, uccsd_data, givens_sv_data, uccsd_sv_da
             reordered_handles2.append(handles2[idx])
             reordered_labels2.append(label)
     ax2.legend(
-        reordered_handles2, reordered_labels2, fontsize=20, loc="best", frameon=False
+        reordered_handles2,
+        reordered_labels2,
+        fontsize=14,
+        loc="upper right",
+        ncol=2,
+        frameon=False,
     )
     ax2.spines["top"].set_visible(False)
     ax2.spines["right"].set_visible(False)
@@ -347,12 +499,24 @@ def main():
     givens_sv_results = load_givens_results("statevector")
     uccsd_sv_results = load_uccsd_results("statevector")
 
+    # Load ADAPT-VQE statevector results (one curve per operator pool)
+    adapt_uccsd_sv_results = load_adapt_results("uccsd", "statevector")
+    adapt_generalized_sv_results = load_adapt_results("generalized", "statevector")
+
+    # Load ADAPT-VQE hardware (H1-1E) results (one curve per operator pool)
+    adapt_uccsd_hw_results = load_adapt_results("uccsd", "H1-1E")
+    adapt_generalized_hw_results = load_adapt_results("generalized", "H1-1E")
+
     # Get all molecules
     all_molecules = set(
         list(givens_results.keys())
         + list(uccsd_results.keys())
         + list(givens_sv_results.keys())
         + list(uccsd_sv_results.keys())
+        + list(adapt_uccsd_sv_results.keys())
+        + list(adapt_generalized_sv_results.keys())
+        + list(adapt_uccsd_hw_results.keys())
+        + list(adapt_generalized_hw_results.keys())
     )
 
     print(f"Found molecules: {sorted(all_molecules)}")
@@ -361,14 +525,37 @@ def main():
     for molecule in sorted(all_molecules):
         givens_data = givens_results.get(molecule, [])
         uccsd_data = uccsd_results.get(molecule, [])
+        adapt_uccsd_sv_data = adapt_uccsd_sv_results.get(molecule, [])
+        adapt_generalized_sv_data = adapt_generalized_sv_results.get(molecule, [])
+        adapt_uccsd_hw_data = adapt_uccsd_hw_results.get(molecule, [])
+        adapt_generalized_hw_data = adapt_generalized_hw_results.get(molecule, [])
 
-        if not givens_data and not uccsd_data:
+        if not any(
+            [
+                givens_data,
+                uccsd_data,
+                givens_sv_results.get(molecule, []),
+                uccsd_sv_results.get(molecule, []),
+                adapt_uccsd_sv_data,
+                adapt_generalized_sv_data,
+                adapt_uccsd_hw_data,
+                adapt_generalized_hw_data,
+            ]
+        ):
             print(f"Skipping {molecule} (no data)")
             continue
 
         print(f"Processing {molecule}...")
         print(f"  Givens points: {len(givens_data)}")
         print(f"  UCCSD points: {len(uccsd_data)}")
+        print(f"  ADAPT-VQE (UCC pool) sv points: {len(adapt_uccsd_sv_data)}")
+        print(
+            f"  ADAPT-VQE (generalized pool) sv points: {len(adapt_generalized_sv_data)}"
+        )
+        print(f"  ADAPT-VQE (UCC pool) H1-1E points: {len(adapt_uccsd_hw_data)}")
+        print(
+            f"  ADAPT-VQE (generalized pool) H1-1E points: {len(adapt_generalized_hw_data)}"
+        )
 
         plot_molecule(
             molecule,
@@ -376,6 +563,10 @@ def main():
             uccsd_data,
             givens_sv_results.get(molecule, []),
             uccsd_sv_results.get(molecule, []),
+            adapt_uccsd_sv_data,
+            adapt_generalized_sv_data,
+            adapt_uccsd_hw_data,
+            adapt_generalized_hw_data,
         )
 
     print(f"\n✓ All plots saved to {OUTPUT_DIR}/")
