@@ -17,6 +17,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GIVENS_DIR = os.path.join(BASE_DIR, "Givens_results")
 UCCSD_DIR = os.path.join(BASE_DIR, "UCCSD_results")
 ADAPT_DIR = os.path.join(BASE_DIR, "ADAPT-VQE_results")
+# Non-final ADAPT-VQE results (e.g. new H1-Emulator_results not yet promoted
+# to ADAPT-VQE_results) are kept here but should be plotted identically.
+TEMP_ADAPT_DIR = os.path.join(BASE_DIR, "temp_results", "ADAPT-VQE_results")
 OUTPUT_DIR = os.path.join(BASE_DIR, "figures")
 
 
@@ -120,49 +123,58 @@ def load_uccsd_results(backend="H1-1E"):
 
 
 def load_adapt_results(pool, backend="statevector"):
-    """Load ADAPT-VQE results for a given operator pool ('uccsd' or 'generalized')."""
+    """Load ADAPT-VQE results for a given operator pool ('uccsd' or 'generalized').
+
+    Searches both the final ADAPT_DIR and TEMP_ADAPT_DIR (non-final results
+    not yet promoted) and merges what it finds, so results are treated
+    identically regardless of which of the two they currently live in.
+    """
     results = defaultdict(list)
-    pool_dir = os.path.join(ADAPT_DIR, pool, backend)
 
-    if not os.path.exists(pool_dir):
-        return results
+    for base_dir in (ADAPT_DIR, TEMP_ADAPT_DIR):
+        pool_dir = os.path.join(base_dir, pool, backend)
 
-    for molecule in os.listdir(pool_dir):
-        molecule_path = os.path.join(pool_dir, molecule)
-        if not os.path.isdir(molecule_path):
+        if not os.path.exists(pool_dir):
             continue
 
-        for circuit_dir in os.listdir(molecule_path):
-            result_path = os.path.join(molecule_path, circuit_dir, "vqe_result.json")
-            if not os.path.exists(result_path):
+        for molecule in os.listdir(pool_dir):
+            molecule_path = os.path.join(pool_dir, molecule)
+            if not os.path.isdir(molecule_path):
                 continue
 
-            with open(result_path, "r") as f:
-                data = json.load(f)
+            for circuit_dir in os.listdir(molecule_path):
+                result_path = os.path.join(
+                    molecule_path, circuit_dir, "vqe_result.json"
+                )
+                if not os.path.exists(result_path):
+                    continue
 
-            energy_error = data.get("energy_error", 0)
-            if isinstance(energy_error, list):
-                error_mean, error_std = energy_error
-            else:
-                error_mean, error_std = energy_error, 0
+                with open(result_path, "r") as f:
+                    data = json.load(f)
 
-            # ADAPT-VQE results store the parameter count explicitly
-            nb_params = data.get("nb_params")
-            if nb_params is None:
-                final_params = data.get("final_params", [])
-                if final_params and isinstance(final_params[0], list):
-                    nb_params = len(final_params[0])
+                energy_error = data.get("energy_error", 0)
+                if isinstance(energy_error, list):
+                    error_mean, error_std = energy_error
                 else:
-                    nb_params = len(final_params)
+                    error_mean, error_std = energy_error, 0
 
-            results[molecule].append(
-                {
-                    "nb_params": nb_params,
-                    "energy_error_mean": abs(error_mean),
-                    "energy_error_std": error_std,
-                    "circuit": data.get("circuit", circuit_dir),
-                }
-            )
+                # ADAPT-VQE results store the parameter count explicitly
+                nb_params = data.get("nb_params")
+                if nb_params is None:
+                    final_params = data.get("final_params", [])
+                    if final_params and isinstance(final_params[0], list):
+                        nb_params = len(final_params[0])
+                    else:
+                        nb_params = len(final_params)
+
+                results[molecule].append(
+                    {
+                        "nb_params": nb_params,
+                        "energy_error_mean": abs(error_mean),
+                        "energy_error_std": error_std,
+                        "circuit": data.get("circuit", circuit_dir),
+                    }
+                )
 
     return results
 
@@ -503,9 +515,11 @@ def main():
     adapt_uccsd_sv_results = load_adapt_results("uccsd", "statevector")
     adapt_generalized_sv_results = load_adapt_results("generalized", "statevector")
 
-    # Load ADAPT-VQE hardware (H1-1E) results (one curve per operator pool)
-    adapt_uccsd_hw_results = load_adapt_results("uccsd", "H1-1E")
-    adapt_generalized_hw_results = load_adapt_results("generalized", "H1-1E")
+    # Load ADAPT-VQE hardware (H1-1E emulator) results (one curve per operator pool)
+    adapt_uccsd_hw_results = load_adapt_results("uccsd", "H1-Emulator_results")
+    adapt_generalized_hw_results = load_adapt_results(
+        "generalized", "H1-Emulator_results"
+    )
 
     # Get all molecules
     all_molecules = set(

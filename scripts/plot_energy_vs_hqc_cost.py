@@ -18,6 +18,10 @@ include_uccsd = False
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GIVENS_DIR = os.path.join(BASE_DIR, "Givens_results")
 UCCSD_DIR = os.path.join(BASE_DIR, "UCCSD_results")
+ADAPT_DIR = os.path.join(BASE_DIR, "ADAPT-VQE_results")
+# Non-final ADAPT-VQE results (e.g. new H1-Emulator_results not yet promoted
+# to ADAPT-VQE_results) are kept here but should be plotted identically.
+TEMP_ADAPT_DIR = os.path.join(BASE_DIR, "temp_results", "ADAPT-VQE_results")
 OUTPUT_DIR = os.path.join(BASE_DIR, "figures")
 
 
@@ -70,7 +74,74 @@ def load_results(backend_dir):
     return results
 
 
-def plot_molecule(molecule, h1_1_data, h1_1e_data, statevector_data, uccsd_data=None):
+def load_adapt_results(pool, backend="H1-Emulator_results"):
+    """Load ADAPT-VQE results for a given operator pool ('uccsd' or 'generalized').
+
+    Searches both the final ADAPT_DIR and TEMP_ADAPT_DIR (non-final results
+    not yet promoted) and merges what it finds, so results are treated
+    identically regardless of which of the two they currently live in.
+    """
+    results = defaultdict(list)
+
+    for base_dir in (ADAPT_DIR, TEMP_ADAPT_DIR):
+        pool_dir = os.path.join(base_dir, pool, backend)
+
+        if not os.path.exists(pool_dir):
+            continue
+
+        for molecule in os.listdir(pool_dir):
+            molecule_path = os.path.join(pool_dir, molecule)
+            if not os.path.isdir(molecule_path):
+                continue
+
+            for circuit_dir in os.listdir(molecule_path):
+                result_path = os.path.join(
+                    molecule_path, circuit_dir, "vqe_result.json"
+                )
+                if not os.path.exists(result_path):
+                    continue
+
+                with open(result_path, "r") as f:
+                    data = json.load(f)
+
+                energy_error = data.get("energy_error", 0)
+                if isinstance(energy_error, list):
+                    error_mean, error_std = energy_error
+                else:
+                    error_mean, error_std = energy_error, 0
+
+                # ADAPT-VQE results store the parameter count explicitly
+                nb_params = data.get("nb_params")
+                if nb_params is None:
+                    final_params = data.get("final_params", [])
+                    if final_params and isinstance(final_params[0], list):
+                        nb_params = len(final_params[0])
+                    else:
+                        nb_params = len(final_params)
+
+                results[molecule].append(
+                    {
+                        "HQC_cost": data.get("HQC_cost", 0),
+                        "energy_error_mean": abs(error_mean),
+                        "energy_error_std": error_std,
+                        "nb_params": nb_params,
+                        "circuit": data.get("circuit", circuit_dir),
+                        "nb_qubits": data.get("nb_qubits", 0),
+                    }
+                )
+
+    return results
+
+
+def plot_molecule(
+    molecule,
+    h1_1_data,
+    h1_1e_data,
+    statevector_data,
+    uccsd_data=None,
+    adapt_uccsd_data=None,
+    adapt_generalized_data=None,
+):
     """Create plot for a single molecule."""
     fig, (ax1, ax2) = plt.subplots(
         2, 1, figsize=(10, 8), height_ratios=[4, 1], sharex=True, dpi=300
@@ -189,6 +260,49 @@ def plot_molecule(molecule, h1_1_data, h1_1e_data, statevector_data, uccsd_data=
                 fontweight="bold",
                 color=COLORS["UCC_annotatation"],
             )
+
+    # Plot ADAPT-VQE data (H1-Emulator_results)
+    if adapt_uccsd_data:
+        adapt_uccsd_sorted = sorted(adapt_uccsd_data, key=lambda x: x["HQC_cost"])
+        costs = [r["HQC_cost"] for r in adapt_uccsd_sorted]
+        errors = [r["energy_error_mean"] for r in adapt_uccsd_sorted]
+        error_bars = [r["energy_error_std"] for r in adapt_uccsd_sorted]
+
+        ax1.errorbar(
+            costs,
+            errors,
+            yerr=error_bars,
+            fmt="^-",
+            label="ADAPT-VQE (UCC pool)",
+            color=COLORS["ADAPT-UCC"],
+            markersize=8,
+            linewidth=2,
+            capsize=3,
+            capthick=1.2,
+            zorder=2,
+        )
+
+    if adapt_generalized_data:
+        adapt_generalized_sorted = sorted(
+            adapt_generalized_data, key=lambda x: x["HQC_cost"]
+        )
+        costs = [r["HQC_cost"] for r in adapt_generalized_sorted]
+        errors = [r["energy_error_mean"] for r in adapt_generalized_sorted]
+        error_bars = [r["energy_error_std"] for r in adapt_generalized_sorted]
+
+        ax1.errorbar(
+            costs,
+            errors,
+            yerr=error_bars,
+            fmt="D-",
+            label="ADAPT-VQE (generalized pool)",
+            color=COLORS["ADAPT-generalized"],
+            markersize=8,
+            linewidth=2,
+            capsize=3,
+            capthick=1.2,
+            zorder=2,
+        )
 
     # Plot statevector data in subplot - match circuit names to HQC costs
     if statevector_data and circuit_to_hqc:
@@ -312,12 +426,18 @@ def main():
     else:
         uccsd_results = {}
 
+    # Load ADAPT-VQE hardware (H1-1E emulator) results (one curve per operator pool)
+    adapt_uccsd_results = load_adapt_results("uccsd")
+    adapt_generalized_results = load_adapt_results("generalized")
+
     # Get all molecules
     all_molecules = set(
         list(h1_1_results.keys())
         + list(h1_1e_results.keys())
         + list(statevector_results.keys())
         + list(uccsd_results.keys())
+        + list(adapt_uccsd_results.keys())
+        + list(adapt_generalized_results.keys())
     )
 
     print(f"Found molecules: {sorted(all_molecules)}")
@@ -331,6 +451,8 @@ def main():
             h1_1e_results.get(molecule, []),
             statevector_results.get(molecule, []),
             uccsd_results.get(molecule, []),
+            adapt_uccsd_results.get(molecule, []),
+            adapt_generalized_results.get(molecule, []),
         )
 
     print(f"\n✓ All plots saved to {OUTPUT_DIR}/")

@@ -16,6 +16,10 @@ from plot_style import COLORS
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GIVENS_DIR = os.path.join(BASE_DIR, "Givens_results")
 UCCSD_DIR = os.path.join(BASE_DIR, "UCCSD_results")
+ADAPT_DIR = os.path.join(BASE_DIR, "ADAPT-VQE_results")
+# Non-final ADAPT-VQE results (e.g. new H1-Emulator_results not yet promoted
+# to ADAPT-VQE_results) are kept here but should be plotted identically.
+TEMP_ADAPT_DIR = os.path.join(BASE_DIR, "temp_results", "ADAPT-VQE_results")
 OUTPUT_DIR = os.path.join(BASE_DIR, "figures")
 
 
@@ -114,7 +118,63 @@ def load_uccsd_results():
     return results
 
 
-def plot_molecule(molecule, givens_data, uccsd_data):
+def load_adapt_results(pool, backend="H1-Emulator_results"):
+    """Load ADAPT-VQE results for a given operator pool ('uccsd' or 'generalized').
+
+    Searches both the final ADAPT_DIR and TEMP_ADAPT_DIR (non-final results
+    not yet promoted) and merges what it finds, so results are treated
+    identically regardless of which of the two they currently live in.
+    """
+    results = defaultdict(list)
+
+    for base_dir in (ADAPT_DIR, TEMP_ADAPT_DIR):
+        pool_dir = os.path.join(base_dir, pool, backend)
+
+        if not os.path.exists(pool_dir):
+            continue
+
+        for molecule in os.listdir(pool_dir):
+            molecule_path = os.path.join(pool_dir, molecule)
+            if not os.path.isdir(molecule_path):
+                continue
+
+            for circuit_dir in os.listdir(molecule_path):
+                result_path = os.path.join(
+                    molecule_path, circuit_dir, "vqe_result.json"
+                )
+                if not os.path.exists(result_path):
+                    continue
+
+                with open(result_path, "r") as f:
+                    data = json.load(f)
+
+                # ADAPT-VQE results store the parameter count explicitly
+                nb_params = data.get("nb_params")
+                if nb_params is None:
+                    final_params = data.get("final_params", [])
+                    if final_params and isinstance(final_params[0], list):
+                        nb_params = len(final_params[0])
+                    else:
+                        nb_params = len(final_params)
+
+                results[molecule].append(
+                    {
+                        "nb_params": nb_params,
+                        "HQC_cost": data.get("HQC_cost", 0),
+                        "circuit": data.get("circuit", circuit_dir),
+                    }
+                )
+
+    return results
+
+
+def plot_molecule(
+    molecule,
+    givens_data,
+    uccsd_data,
+    adapt_uccsd_data=None,
+    adapt_generalized_data=None,
+):
     """Create plot for a single molecule comparing Givens and UCCSD."""
     fig, ax = plt.subplots(figsize=(10, 6), dpi=300)
 
@@ -147,6 +207,39 @@ def plot_molecule(molecule, givens_data, uccsd_data):
             "s-",
             label="QMC-UCC",
             color=COLORS["QMC-UCC"],
+            markersize=8,
+            linewidth=2,
+        )
+
+    # Plot ADAPT-VQE data
+    if adapt_uccsd_data:
+        adapt_uccsd_sorted = sorted(adapt_uccsd_data, key=lambda x: x["nb_params"])
+        params = [r["nb_params"] for r in adapt_uccsd_sorted]
+        costs = [r["HQC_cost"] for r in adapt_uccsd_sorted]
+
+        ax.plot(
+            params,
+            costs,
+            "^-",
+            label="ADAPT-VQE (UCC pool)",
+            color=COLORS["ADAPT-UCC"],
+            markersize=8,
+            linewidth=2,
+        )
+
+    if adapt_generalized_data:
+        adapt_generalized_sorted = sorted(
+            adapt_generalized_data, key=lambda x: x["nb_params"]
+        )
+        params = [r["nb_params"] for r in adapt_generalized_sorted]
+        costs = [r["HQC_cost"] for r in adapt_generalized_sorted]
+
+        ax.plot(
+            params,
+            costs,
+            "D-",
+            label="ADAPT-VQE (generalized pool)",
+            color=COLORS["ADAPT-generalized"],
             markersize=8,
             linewidth=2,
         )
@@ -194,9 +287,16 @@ def main():
     # Load results
     givens_results = load_givens_results()
     uccsd_results = load_uccsd_results()
+    adapt_uccsd_results = load_adapt_results("uccsd")
+    adapt_generalized_results = load_adapt_results("generalized")
 
     # Get all molecules
-    all_molecules = set(list(givens_results.keys()) + list(uccsd_results.keys()))
+    all_molecules = set(
+        list(givens_results.keys())
+        + list(uccsd_results.keys())
+        + list(adapt_uccsd_results.keys())
+        + list(adapt_generalized_results.keys())
+    )
 
     print(f"Found molecules: {sorted(all_molecules)}")
     # all_molecules = ["N2"]
@@ -204,16 +304,22 @@ def main():
     for molecule in sorted(all_molecules):
         givens_data = givens_results.get(molecule, [])
         uccsd_data = uccsd_results.get(molecule, [])
+        adapt_uccsd_data = adapt_uccsd_results.get(molecule, [])
+        adapt_generalized_data = adapt_generalized_results.get(molecule, [])
 
-        if not givens_data and not uccsd_data:
+        if not any([givens_data, uccsd_data, adapt_uccsd_data, adapt_generalized_data]):
             print(f"Skipping {molecule} (no data)")
             continue
 
         print(f"Processing {molecule}...")
         print(f"  Givens points: {len(givens_data)}")
         print(f"  UCCSD points: {len(uccsd_data)}")
+        print(f"  ADAPT-VQE (UCC pool) points: {len(adapt_uccsd_data)}")
+        print(f"  ADAPT-VQE (generalized pool) points: {len(adapt_generalized_data)}")
 
-        plot_molecule(molecule, givens_data, uccsd_data)
+        plot_molecule(
+            molecule, givens_data, uccsd_data, adapt_uccsd_data, adapt_generalized_data
+        )
 
     print(f"\n✓ All plots saved to {OUTPUT_DIR}/")
 
