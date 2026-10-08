@@ -19,7 +19,7 @@ UCCSD_DIR = os.path.join(BASE_DIR, "UCCSD_results")
 ADAPT_DIR = os.path.join(BASE_DIR, "ADAPT-VQE_results")
 # Non-final ADAPT-VQE results (e.g. new H1-Emulator_results not yet promoted
 # to ADAPT-VQE_results) are kept here but should be plotted identically.
-TEMP_ADAPT_DIR = os.path.join(BASE_DIR, "temp_results", "ADAPT-VQE_results")
+# TEMP_ADAPT_DIR = os.path.join(BASE_DIR, "temp_results", "ADAPT-VQE_results")
 OUTPUT_DIR = os.path.join(BASE_DIR, "figures")
 
 
@@ -131,7 +131,7 @@ def load_adapt_results(pool, backend="statevector"):
     """
     results = defaultdict(list)
 
-    for base_dir in (ADAPT_DIR, TEMP_ADAPT_DIR):
+    for base_dir in (ADAPT_DIR,): #, TEMP_ADAPT_DIR
         pool_dir = os.path.join(base_dir, pool, backend)
 
         if not os.path.exists(pool_dir):

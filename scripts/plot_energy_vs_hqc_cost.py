@@ -4,6 +4,7 @@ Creates one plot per molecule with main plot and statevector subplot.
 """
 
 import json
+import math
 import os
 import matplotlib
 
@@ -12,7 +13,7 @@ import matplotlib.pyplot as plt
 from collections import defaultdict
 from plot_style import COLORS
 
-include_uccsd = False
+include_uccsd = True
 
 # Configuration
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -21,7 +22,7 @@ UCCSD_DIR = os.path.join(BASE_DIR, "UCCSD_results")
 ADAPT_DIR = os.path.join(BASE_DIR, "ADAPT-VQE_results")
 # Non-final ADAPT-VQE results (e.g. new H1-Emulator_results not yet promoted
 # to ADAPT-VQE_results) are kept here but should be plotted identically.
-TEMP_ADAPT_DIR = os.path.join(BASE_DIR, "temp_results", "ADAPT-VQE_results")
+# TEMP_ADAPT_DIR = os.path.join(BASE_DIR, "temp_results", "ADAPT-VQE_results")
 OUTPUT_DIR = os.path.join(BASE_DIR, "figures")
 
 
@@ -60,6 +61,10 @@ def load_results(backend_dir):
             else:
                 nb_params = len(final_params)
 
+            # Skip placeholder results (e.g. "TBD") so they don't break the axes
+            if not isinstance(error_mean, (int, float)) or not math.isfinite(error_mean):
+                continue
+
             results[molecule].append(
                 {
                     "HQC_cost": data.get("HQC_cost", 0),
@@ -83,7 +88,7 @@ def load_adapt_results(pool, backend="H1-Emulator_results"):
     """
     results = defaultdict(list)
 
-    for base_dir in (ADAPT_DIR, TEMP_ADAPT_DIR):
+    for base_dir in (ADAPT_DIR,):  # , TEMP_ADAPT_DIR
         pool_dir = os.path.join(base_dir, pool, backend)
 
         if not os.path.exists(pool_dir):
@@ -236,17 +241,21 @@ def plot_molecule(
         uccsd_sorted = sorted(uccsd_data, key=lambda x: x["HQC_cost"])
         costs = [r["HQC_cost"] for r in uccsd_sorted]
         errors = [r["energy_error_mean"] for r in uccsd_sorted]
+        error_bars = [r["energy_error_std"] for r in uccsd_sorted]
         params = [r["nb_params"] for r in uccsd_sorted]
 
-        ax1.plot(
+        ax1.errorbar(
             costs,
             errors,
-            "s-",
+            yerr=error_bars,
+            fmt="s-",
             label="H1-1E (UCCSD)",
             color=COLORS["QMC-UCC"],
             markersize=9,
             linewidth=2,
             alpha=0.8,
+            capsize=3,
+            capthick=1.2,
         )
 
         # Add parameter count annotations
