@@ -54,5 +54,285 @@
         "c27138c6-2d6e-4570-8887-d6d1f3ed60df",
         "d0631f12-01e1-4cb2-b960-cf0a0d5ce4fb"
     ],
-    "HQC_cost": 12575.4
+    "HQC_cost": 12575.4,
+    "circuit_gate_counts": {
+        "source": "nexus_compiled_circuit_ids",
+        "n_circuits": 16,
+        "per_circuit": [
+            {
+                "raw_gate_counts": {
+                    "PhasedX": 439,
+                    "ZZPhase": 342,
+                    "Measure": 8
+                },
+                "n_1q_gates": 439,
+                "n_rz_gates": 0,
+                "n_non_virtual_1q_gates": 439,
+                "n_2q_gates": 342,
+                "n_measurements": 8,
+                "n_state_preparations": 8,
+                "n_total_operations": 16,
+                "depth": 670,
+                "depth_2q": 336
+            },
+            {
+                "raw_gate_counts": {
+                    "PhasedX": 433,
+                    "ZZPhase": 341,
+                    "Measure": 8
+                },
+                "n_1q_gates": 433,
+                "n_rz_gates": 0,
+                "n_non_virtual_1q_gates": 433,
+                "n_2q_gates": 341,
+                "n_measurements": 8,
+                "n_state_preparations": 8,
+                "n_total_operations": 16,
+                "depth": 670,
+                "depth_2q": 336
+            },
+            {
+                "raw_gate_counts": {
+                    "PhasedX": 431,
+                    "ZZPhase": 341,
+                    "Measure": 8
+                },
+                "n_1q_gates": 431,
+                "n_rz_gates": 0,
+                "n_non_virtual_1q_gates": 431,
+                "n_2q_gates": 341,
+                "n_measurements": 8,
+                "n_state_preparations": 8,
+                "n_total_operations": 16,
+                "depth": 668,
+                "depth_2q": 335
+            },
+            {
+                "raw_gate_counts": {
+                    "PhasedX": 431,
+                    "ZZPhase": 341,
+                    "Measure": 8
+                },
+                "n_1q_gates": 431,
+                "n_rz_gates": 0,
+                "n_non_virtual_1q_gates": 431,
+                "n_2q_gates": 341,
+                "n_measurements": 8,
+                "n_state_preparations": 8,
+                "n_total_operations": 16,
+                "depth": 667,
+                "depth_2q": 335
+            },
+            {
+                "raw_gate_counts": {
+                    "PhasedX": 433,
+                    "ZZPhase": 340,
+                    "Measure": 8
+                },
+                "n_1q_gates": 433,
+                "n_rz_gates": 0,
+                "n_non_virtual_1q_gates": 433,
+                "n_2q_gates": 340,
+                "n_measurements": 8,
+                "n_state_preparations": 8,
+                "n_total_operations": 16,
+                "depth": 666,
+                "depth_2q": 334
+            },
+            {
+                "raw_gate_counts": {
+                    "PhasedX": 431,
+                    "ZZPhase": 340,
+                    "Measure": 8
+                },
+                "n_1q_gates": 431,
+                "n_rz_gates": 0,
+                "n_non_virtual_1q_gates": 431,
+                "n_2q_gates": 340,
+                "n_measurements": 8,
+                "n_state_preparations": 8,
+                "n_total_operations": 16,
+                "depth": 666,
+                "depth_2q": 334
+            },
+            {
+                "raw_gate_counts": {
+                    "PhasedX": 431,
+                    "ZZPhase": 341,
+                    "Measure": 8
+                },
+                "n_1q_gates": 431,
+                "n_rz_gates": 0,
+                "n_non_virtual_1q_gates": 431,
+                "n_2q_gates": 341,
+                "n_measurements": 8,
+                "n_state_preparations": 8,
+                "n_total_operations": 16,
+                "depth": 667,
+                "depth_2q": 335
+            },
+            {
+                "raw_gate_counts": {
+                    "PhasedX": 431,
+                    "ZZPhase": 341,
+                    "Measure": 8
+                },
+                "n_1q_gates": 431,
+                "n_rz_gates": 0,
+                "n_non_virtual_1q_gates": 431,
+                "n_2q_gates": 341,
+                "n_measurements": 8,
+                "n_state_preparations": 8,
+                "n_total_operations": 16,
+                "depth": 666,
+                "depth_2q": 335
+            },
+            {
+                "raw_gate_counts": {
+                    "PhasedX": 430,
+                    "ZZPhase": 341,
+                    "Measure": 8
+                },
+                "n_1q_gates": 430,
+                "n_rz_gates": 0,
+                "n_non_virtual_1q_gates": 430,
+                "n_2q_gates": 341,
+                "n_measurements": 8,
+                "n_state_preparations": 8,
+                "n_total_operations": 16,
+                "depth": 670,
+                "depth_2q": 336
+            },
+            {
+                "raw_gate_counts": {
+                    "PhasedX": 431,
+                    "ZZPhase": 340,
+                    "Measure": 8
+                },
+                "n_1q_gates": 431,
+                "n_rz_gates": 0,
+                "n_non_virtual_1q_gates": 431,
+                "n_2q_gates": 340,
+                "n_measurements": 8,
+                "n_state_preparations": 8,
+                "n_total_operations": 16,
+                "depth": 666,
+                "depth_2q": 334
+            },
+            {
+                "raw_gate_counts": {
+                    "PhasedX": 437,
+                    "ZZPhase": 341,
+                    "Measure": 8
+                },
+                "n_1q_gates": 437,
+                "n_rz_gates": 0,
+                "n_non_virtual_1q_gates": 437,
+                "n_2q_gates": 341,
+                "n_measurements": 8,
+                "n_state_preparations": 8,
+                "n_total_operations": 16,
+                "depth": 667,
+                "depth_2q": 334
+            },
+            {
+                "raw_gate_counts": {
+                    "PhasedX": 429,
+                    "ZZPhase": 337,
+                    "Measure": 8
+                },
+                "n_1q_gates": 429,
+                "n_rz_gates": 0,
+                "n_non_virtual_1q_gates": 429,
+                "n_2q_gates": 337,
+                "n_measurements": 8,
+                "n_state_preparations": 8,
+                "n_total_operations": 16,
+                "depth": 663,
+                "depth_2q": 332
+            },
+            {
+                "raw_gate_counts": {
+                    "PhasedX": 430,
+                    "ZZPhase": 338,
+                    "Measure": 8
+                },
+                "n_1q_gates": 430,
+                "n_rz_gates": 0,
+                "n_non_virtual_1q_gates": 430,
+                "n_2q_gates": 338,
+                "n_measurements": 8,
+                "n_state_preparations": 8,
+                "n_total_operations": 16,
+                "depth": 662,
+                "depth_2q": 331
+            },
+            {
+                "raw_gate_counts": {
+                    "PhasedX": 429,
+                    "ZZPhase": 337,
+                    "Measure": 8
+                },
+                "n_1q_gates": 429,
+                "n_rz_gates": 0,
+                "n_non_virtual_1q_gates": 429,
+                "n_2q_gates": 337,
+                "n_measurements": 8,
+                "n_state_preparations": 8,
+                "n_total_operations": 16,
+                "depth": 662,
+                "depth_2q": 331
+            },
+            {
+                "raw_gate_counts": {
+                    "PhasedX": 426,
+                    "ZZPhase": 335,
+                    "Measure": 8
+                },
+                "n_1q_gates": 426,
+                "n_rz_gates": 0,
+                "n_non_virtual_1q_gates": 426,
+                "n_2q_gates": 335,
+                "n_measurements": 8,
+                "n_state_preparations": 8,
+                "n_total_operations": 16,
+                "depth": 660,
+                "depth_2q": 330
+            },
+            {
+                "raw_gate_counts": {
+                    "PhasedX": 425,
+                    "ZZPhase": 334,
+                    "Measure": 8
+                },
+                "n_1q_gates": 425,
+                "n_rz_gates": 0,
+                "n_non_virtual_1q_gates": 425,
+                "n_2q_gates": 334,
+                "n_measurements": 8,
+                "n_state_preparations": 8,
+                "n_total_operations": 16,
+                "depth": 660,
+                "depth_2q": 330
+            }
+        ],
+        "total": {
+            "raw_gate_counts": {
+                "PhasedX": 6897,
+                "ZZPhase": 5430,
+                "Measure": 128
+            },
+            "n_1q_gates": 6897,
+            "n_2q_gates": 5430,
+            "n_rz_gates": 0,
+            "n_non_virtual_1q_gates": 6897,
+            "n_measurements": 128,
+            "n_state_preparations": 128,
+            "n_total_operations": 256,
+            "max_depth": 670,
+            "mean_depth": 665.625,
+            "max_depth_2q": 336,
+            "mean_depth_2q": 333.625
+        }
+    }
 }
