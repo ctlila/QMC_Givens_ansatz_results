@@ -1,0 +1,20 @@
+{
+    "molecule": "LiH_6_spinorbs",
+    "circuit": "adapt_02_params",
+    "nb_params": 2,
+    "circuit_path": "/home/qlila/ResearchCode/GivensVQE/ansatz_circuits/adapt-vqe/generalized/LiH_6_spinorbs/adapt_02_params.qpy",
+    "optimisation_level": 2,
+    "compile_time_seconds": 0.46,
+    "raw_gate_counts": {
+        "PhasedX": 62,
+        "ZZPhase": 35,
+        "Rz": 2
+    },
+    "n_1q_gates": 64,
+    "n_rz_gates": 2,
+    "n_non_virtual_1q_gates": 62,
+    "n_2q_gates": 35,
+    "n_qubits": 6,
+    "depth": 69,
+    "depth_2q": 34
+}

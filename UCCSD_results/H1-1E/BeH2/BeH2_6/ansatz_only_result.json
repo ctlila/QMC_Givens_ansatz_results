@@ -1,0 +1,20 @@
+{
+    "molecule": "BeH2",
+    "circuit": "BeH2_6",
+    "nb_params": 6,
+    "circuit_path": "/home/qlila/ResearchCode/GivensVQE/ansatz_circuits/UCCSD/BeH2/BeH2_6.json",
+    "optimisation_level": 2,
+    "compile_time_seconds": 1.91,
+    "raw_gate_counts": {
+        "PhasedX": 286,
+        "ZZPhase": 186,
+        "Rz": 7
+    },
+    "n_1q_gates": 293,
+    "n_rz_gates": 7,
+    "n_non_virtual_1q_gates": 286,
+    "n_2q_gates": 186,
+    "n_qubits": 8,
+    "depth": 249,
+    "depth_2q": 125
+}

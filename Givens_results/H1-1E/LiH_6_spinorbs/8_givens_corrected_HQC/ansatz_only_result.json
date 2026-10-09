@@ -1,0 +1,20 @@
+{
+    "molecule": "LiH_6_spinorbs",
+    "circuit": "8_givens",
+    "nb_params": null,
+    "circuit_path": "/home/qlila/ResearchCode/GivensVQE/ansatz_circuits/ordered_circuits/LiH_6_spinorbs/8_givens.qpy",
+    "optimisation_level": 2,
+    "compile_time_seconds": 0.6,
+    "raw_gate_counts": {
+        "PhasedX": 92,
+        "ZZPhase": 54,
+        "Rz": 4
+    },
+    "n_1q_gates": 96,
+    "n_rz_gates": 4,
+    "n_non_virtual_1q_gates": 92,
+    "n_2q_gates": 54,
+    "n_qubits": 6,
+    "depth": 86,
+    "depth_2q": 42
+}

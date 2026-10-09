@@ -1,0 +1,20 @@
+{
+    "molecule": "N2",
+    "circuit": "N2_16",
+    "nb_params": 16,
+    "circuit_path": "/home/qlila/ResearchCode/GivensVQE/ansatz_circuits/UCCSD/N2/N2_16.json",
+    "optimisation_level": 2,
+    "compile_time_seconds": 8.58,
+    "raw_gate_counts": {
+        "PhasedX": 1054,
+        "ZZPhase": 720,
+        "Rz": 7
+    },
+    "n_1q_gates": 1061,
+    "n_rz_gates": 7,
+    "n_non_virtual_1q_gates": 1054,
+    "n_2q_gates": 720,
+    "n_qubits": 16,
+    "depth": 856,
+    "depth_2q": 440
+}

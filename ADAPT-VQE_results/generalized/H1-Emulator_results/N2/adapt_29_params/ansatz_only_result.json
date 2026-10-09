@@ -1,0 +1,20 @@
+{
+    "molecule": "N2",
+    "circuit": "adapt_29_params",
+    "nb_params": 29,
+    "circuit_path": "/home/qlila/ResearchCode/GivensVQE/ansatz_circuits/adapt-vqe/generalized/N2/adapt_29_params.qpy",
+    "optimisation_level": 2,
+    "compile_time_seconds": 42.52,
+    "raw_gate_counts": {
+        "PhasedX": 4253,
+        "ZZPhase": 3738,
+        "Rz": 9
+    },
+    "n_1q_gates": 4262,
+    "n_rz_gates": 9,
+    "n_non_virtual_1q_gates": 4253,
+    "n_2q_gates": 3738,
+    "n_qubits": 16,
+    "depth": 7466,
+    "depth_2q": 3732
+}

@@ -1,0 +1,20 @@
+{
+    "molecule": "BeH2",
+    "circuit": "9_givens",
+    "nb_params": null,
+    "circuit_path": "/home/qlila/ResearchCode/GivensVQE/ansatz_circuits/ordered_circuits/BeH2/9_givens.qpy",
+    "optimisation_level": 2,
+    "compile_time_seconds": 0.66,
+    "raw_gate_counts": {
+        "PhasedX": 111,
+        "ZZPhase": 65,
+        "Rz": 8
+    },
+    "n_1q_gates": 119,
+    "n_rz_gates": 8,
+    "n_non_virtual_1q_gates": 111,
+    "n_2q_gates": 65,
+    "n_qubits": 8,
+    "depth": 104,
+    "depth_2q": 51
+}

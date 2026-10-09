@@ -1,0 +1,20 @@
+{
+    "molecule": "N2",
+    "circuit": "N2_2_givens",
+    "nb_params": null,
+    "circuit_path": "/home/qlila/ResearchCode/GivensVQE/ansatz_circuits/ordered_circuits/N2/N2_2_givens.qpy",
+    "optimisation_level": 2,
+    "compile_time_seconds": 0.27,
+    "raw_gate_counts": {
+        "PhasedX": 54,
+        "ZZPhase": 26,
+        "Rz": 8
+    },
+    "n_1q_gates": 62,
+    "n_rz_gates": 8,
+    "n_non_virtual_1q_gates": 54,
+    "n_2q_gates": 26,
+    "n_qubits": 14,
+    "depth": 24,
+    "depth_2q": 11
+}

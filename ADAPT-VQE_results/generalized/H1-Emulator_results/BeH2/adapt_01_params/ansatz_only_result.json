@@ -1,0 +1,20 @@
+{
+    "molecule": "BeH2",
+    "circuit": "adapt_01_params",
+    "nb_params": 1,
+    "circuit_path": "/home/qlila/ResearchCode/GivensVQE/ansatz_circuits/adapt-vqe/generalized/BeH2/adapt_01_params.qpy",
+    "optimisation_level": 2,
+    "compile_time_seconds": 0.42,
+    "raw_gate_counts": {
+        "PhasedX": 62,
+        "ZZPhase": 33,
+        "Rz": 1
+    },
+    "n_1q_gates": 63,
+    "n_rz_gates": 1,
+    "n_non_virtual_1q_gates": 62,
+    "n_2q_gates": 33,
+    "n_qubits": 8,
+    "depth": 66,
+    "depth_2q": 33
+}

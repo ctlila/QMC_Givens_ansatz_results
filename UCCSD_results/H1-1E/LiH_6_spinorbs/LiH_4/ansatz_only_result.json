@@ -1,0 +1,20 @@
+{
+    "molecule": "LiH_6_spinorbs",
+    "circuit": "LiH_4",
+    "nb_params": 4,
+    "circuit_path": "/home/qlila/ResearchCode/GivensVQE/ansatz_circuits/UCCSD/LiH_6_spinorbs/LiH_4.json",
+    "optimisation_level": 2,
+    "compile_time_seconds": 0.68,
+    "raw_gate_counts": {
+        "PhasedX": 111,
+        "ZZPhase": 64,
+        "Rz": 5
+    },
+    "n_1q_gates": 116,
+    "n_rz_gates": 5,
+    "n_non_virtual_1q_gates": 111,
+    "n_2q_gates": 64,
+    "n_qubits": 6,
+    "depth": 93,
+    "depth_2q": 47
+}
