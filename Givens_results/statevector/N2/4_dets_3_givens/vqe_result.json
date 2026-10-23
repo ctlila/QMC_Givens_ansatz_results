@@ -1,0 +1,49 @@
+{
+    "final_elec_energy": -131.15202939492292,
+    "final_energy_std": null,
+    "nuclear_energy": 23.615376443606557,
+    "core_energy": -100.02780752661155,
+    "final_total_energy": -107.53665295131637,
+    "final_params": [
+        -0.07395196174578493,
+        0.37745277584336523,
+        0.033522041380651395
+    ],
+    "success": true,
+    "initial_params": [
+        0.0,
+        0.0,
+        0.0
+    ],
+    "initial_energy": -131.11135147419716,
+    "initial_energy_std": null,
+    "optimizer": "L-BFGS-B",
+    "param_mode": "zeros",
+    "circuit_path": "/home/qlila/ResearchCode/GivensVQE/ansatz_circuits/ordered_circuits_to_run/N2/4_dets_3_givens.qpy",
+    "nb_removed_dets": null,
+    "nb_givens": 1,
+    "nb_params": null,
+    "molecule": "N2",
+    "shots": null,
+    "nb_single_givens": 0,
+    "nb_double_givens": 3,
+    "param_path": null,
+    "energy_error": 0.11605084230697571,
+    "circuit": "4_dets_3_givens",
+    "shot_dir": "statevector",
+    "nb_samples": 1,
+    "nb_hamiltonian_measurements": null,
+    "givens_depth": 3,
+    "nb_qubits": 16,
+    "seed": null,
+    "nb_iterations": 5,
+    "termination_flag": "CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL",
+    "nb_function_evals": 28,
+    "used_params_indices": [
+        0,
+        1,
+        2
+    ],
+    "jobs_dict": {},
+    "HQC_cost": 0
+}

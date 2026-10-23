@@ -1,0 +1,82 @@
+{
+    "final_elec_energy": -9.07253248569562,
+    "final_energy_std": null,
+    "nuclear_energy": 1.133951166257143,
+    "core_energy": 0.0,
+    "final_total_energy": -7.938581319438477,
+    "final_params": [],
+    "success": null,
+    "initial_params": [],
+    "initial_energy": -9.07253248569562,
+    "initial_energy_std": null,
+    "optimizer": null,
+    "param_mode": "None",
+    "circuit_path": "/home/lc892/ResearchCode/GivensVQE/ansatz_circuits/adapt-vqe/uccsd//LiH_6_spinorbs/adapt_03_params.qpy",
+    "nb_removed_dets": null,
+    "nb_givens": null,
+    "nb_params": 3,
+    "molecule": "LiH_6_spinorbs",
+    "shots": 1000,
+    "nb_single_givens": 0,
+    "nb_double_givens": 0,
+    "param_path": null,
+    "energy_error": 0.006054029373244063,
+    "circuit": "adapt_03_params",
+    "shot_dir": "1000_shots",
+    "nb_samples": 1,
+    "nb_hamiltonian_measurements": 10,
+    "givens_depth": 169,
+    "nb_qubits": 6,
+    "seed": null,
+    "nb_iterations": null,
+    "termination_flag": null,
+    "nb_function_evals": null,
+    "used_params_indices": [],
+    "jobs_dict": {
+        "0": [
+            null,
+            -0.32287041040450304
+        ],
+        "1": [
+            null,
+            -0.00023853858837696444
+        ],
+        "2": [
+            null,
+            -1.735439532018054
+        ],
+        "3": [
+            null,
+            0.1258327960070183
+        ],
+        "4": [
+            null,
+            0.004475304837312684
+        ],
+        "5": [
+            null,
+            -1.6473362945792402
+        ],
+        "6": [
+            null,
+            -0.061603798501241785
+        ],
+        "7": [
+            null,
+            0.3477366400972788
+        ],
+        "8": [
+            null,
+            0.00010395698008558217
+        ],
+        "9": [
+            null,
+            -0.000117245269890579
+        ],
+        "id": [
+            null,
+            -5.7830753642560015
+        ]
+    },
+    "HQC_cost": 0
+}

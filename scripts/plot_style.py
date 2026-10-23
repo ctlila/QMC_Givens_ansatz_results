@@ -14,4 +14,6 @@ COLORS = {
     "UCC_annotatation": "#291211",
     "Statevector": "#48C9B0",
     "HF_baseline": "#444444",
+    "ADAPT-UCC": "#001f3f",
+    "ADAPT-generalized": "#5A189A",
 }

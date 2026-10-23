@@ -1,0 +1,82 @@
+{
+    "final_elec_energy": -9.081509770471147,
+    "final_energy_std": null,
+    "nuclear_energy": 1.133951166257143,
+    "core_energy": 0.0,
+    "final_total_energy": -7.947558604214004,
+    "final_params": [],
+    "success": null,
+    "initial_params": [],
+    "initial_energy": -9.081509770471147,
+    "initial_energy_std": null,
+    "optimizer": null,
+    "param_mode": "None",
+    "circuit_path": "/home/lc892/ResearchCode/GivensVQE/ansatz_circuits/adapt-vqe/generalized//LiH_6_spinorbs/adapt_01_params.qpy",
+    "nb_removed_dets": null,
+    "nb_givens": null,
+    "nb_params": 1,
+    "molecule": "LiH_6_spinorbs",
+    "shots": 1000,
+    "nb_single_givens": 0,
+    "nb_double_givens": 0,
+    "param_path": null,
+    "energy_error": -0.0029232554022833313,
+    "circuit": "adapt_01_params",
+    "shot_dir": "1000_shots",
+    "nb_samples": 1,
+    "nb_hamiltonian_measurements": 10,
+    "givens_depth": 73,
+    "nb_qubits": 6,
+    "seed": null,
+    "nb_iterations": null,
+    "termination_flag": null,
+    "nb_function_evals": null,
+    "used_params_indices": [],
+    "jobs_dict": {
+        "0": [
+            null,
+            -0.31859992196236325
+        ],
+        "1": [
+            null,
+            -0.0007447578447237287
+        ],
+        "2": [
+            null,
+            -1.7356068948665055
+        ],
+        "3": [
+            null,
+            0.1267932282477445
+        ],
+        "4": [
+            null,
+            0.0011230631743596314
+        ],
+        "5": [
+            null,
+            -1.643578327704501
+        ],
+        "6": [
+            null,
+            -0.06891417237485498
+        ],
+        "7": [
+            null,
+            0.34116820967084627
+        ],
+        "8": [
+            null,
+            -2.4243065083955415e-05
+        ],
+        "9": [
+            null,
+            -5.058949006871903e-05
+        ],
+        "id": [
+            null,
+            -5.7830753642560015
+        ]
+    },
+    "HQC_cost": 0
+}

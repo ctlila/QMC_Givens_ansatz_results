@@ -1,0 +1,174 @@
+{
+    "final_elec_energy": -131.2380541595384,
+    "final_energy_std": null,
+    "nuclear_energy": 23.615376443606557,
+    "core_energy": -100.02780752661153,
+    "final_total_energy": -107.62267771593184,
+    "final_params": [],
+    "success": null,
+    "initial_params": [],
+    "initial_energy": -131.2380541595384,
+    "initial_energy_std": null,
+    "optimizer": null,
+    "param_mode": "None",
+    "circuit_path": "/home/lc892/ResearchCode/GivensVQE/ansatz_circuits/adapt-vqe/generalized//N2/adapt_10_params.qpy",
+    "nb_removed_dets": null,
+    "nb_givens": null,
+    "nb_params": 10,
+    "molecule": "N2",
+    "shots": 1000,
+    "nb_single_givens": 0,
+    "nb_double_givens": 0,
+    "param_path": null,
+    "energy_error": 0.03002607769150245,
+    "circuit": "adapt_10_params",
+    "shot_dir": "1000_shots",
+    "nb_samples": 1,
+    "nb_hamiltonian_measurements": 33,
+    "givens_depth": 1733,
+    "nb_qubits": 16,
+    "seed": null,
+    "nb_iterations": null,
+    "termination_flag": null,
+    "nb_function_evals": null,
+    "used_params_indices": [],
+    "jobs_dict": {
+        "0": [
+            null,
+            0.48483183523255424
+        ],
+        "1": [
+            null,
+            1.0492359775714124
+        ],
+        "2": [
+            null,
+            0.48940514173649297
+        ],
+        "3": [
+            null,
+            -0.09278260442863066
+        ],
+        "4": [
+            null,
+            -0.2838392401058435
+        ],
+        "5": [
+            null,
+            -0.13406936784921797
+        ],
+        "6": [
+            null,
+            0.23134976325089232
+        ],
+        "7": [
+            null,
+            0.1176685747254436
+        ],
+        "8": [
+            null,
+            0.031542789214851624
+        ],
+        "9": [
+            null,
+            0.010828705643756082
+        ],
+        "10": [
+            null,
+            -0.1565621368965166
+        ],
+        "11": [
+            null,
+            -0.12513666122152098
+        ],
+        "12": [
+            null,
+            0.0018876473120440441
+        ],
+        "13": [
+            null,
+            -0.04370623960778156
+        ],
+        "14": [
+            null,
+            -0.1281249214248172
+        ],
+        "15": [
+            null,
+            -0.0016735396483758811
+        ],
+        "16": [
+            null,
+            0.13148289846957037
+        ],
+        "17": [
+            null,
+            -0.12124440504531434
+        ],
+        "18": [
+            null,
+            -0.4688813749886157
+        ],
+        "19": [
+            null,
+            -4.908500288266846
+        ],
+        "20": [
+            null,
+            -0.9980628740691456
+        ],
+        "21": [
+            null,
+            -0.369815903971718
+        ],
+        "22": [
+            null,
+            -0.08429806738149993
+        ],
+        "23": [
+            null,
+            -0.05308006169998651
+        ],
+        "24": [
+            null,
+            -0.013746664703289575
+        ],
+        "25": [
+            null,
+            -0.016662751907743963
+        ],
+        "26": [
+            null,
+            0.0005636906179342536
+        ],
+        "27": [
+            null,
+            -0.06988789605404197
+        ],
+        "28": [
+            null,
+            -0.0036757786995330398
+        ],
+        "29": [
+            null,
+            0.003543049530625189
+        ],
+        "30": [
+            null,
+            -0.010016861440330828
+        ],
+        "31": [
+            null,
+            -0.012486197596684057
+        ],
+        "32": [
+            null,
+            -0.0002606763074033186
+        ],
+        "id": [
+            null,
+            -25.66607219291755
+        ]
+    },
+    "HQC_cost": 0
+}
