@@ -4,8 +4,12 @@ This folder contains Python scripts to visualize the QMC Givens ansatz results.
 
 ## Scripts
 
-### 1. `plot_energy_vs_hqc_cost.py`
-Generates plots of energy error vs HQC cost for Givens ansatz on H1-1 and H1-1E backends.
+### 1. `plot_energy_vs_2q_gates.py`
+Generates plots of energy error vs number of 2-qubit gates for Givens ansatz on
+H1-1 and H1-1E backends. (Supersedes `plot_energy_vs_hqc_cost.py`, which used
+HQC cost on the x-axis instead; kept in `../ignore/old_scripts/` for
+reference.) The gate counts are read from the `circuit_gate_counts` field of
+each `vqe_result.json`, computed offline by `../ignore/save_gate_counts.py`.
 
 **Features:**
 - One plot per molecule (BeH2, HeH, LiH_6_spinorbs, N2)
@@ -16,15 +20,30 @@ Generates plots of energy error vs HQC cost for Givens ansatz on H1-1 and H1-1E 
 
 **Usage:**
 ```bash
-python scripts/plot_energy_vs_hqc_cost.py
+python scripts/plot_energy_vs_2q_gates.py
 ```
 
-**Output:** Saves PNG files to `figures/` directory:
-- `{molecule}_energy_vs_hqc_cost.png`
+**Output:** Saves SVG/PDF files to `figures/` directory:
+- `{molecule}_energy_vs_2q_gates.svg`
 
 ---
 
-### 2. `plot_energy_vs_params.py`
+### 2. `plot_2q_gates_vs_params.py`
+Generates plots of number of 2-qubit gates vs number of parameters, comparing
+Givens and UCCSD ansatzes on H1-1E. (Supersedes `plot_hqc_cost_vs_params.py`;
+kept in `../ignore/old_scripts/` for reference.)
+
+**Usage:**
+```bash
+python scripts/plot_2q_gates_vs_params.py
+```
+
+**Output:** Saves SVG files to `figures/` directory:
+- `{molecule}_2q_gates_vs_params.svg`
+
+---
+
+### 3. `plot_energy_vs_params.py`
 Compares energy error vs number of parameters for UCCSD and Givens ansatzes.
 
 **Features:**
@@ -41,7 +60,7 @@ python scripts/plot_energy_vs_params.py
 **Output:** Saves PNG files to `figures/` directory:
 - `{molecule}_energy_vs_params.png`
 
-### 3. `compare_shots_methods.py`
+### 4. `compare_shots_methods.py`
 Overlays the 1000-shot results of **all four ansatz methods** on the same axes,
 one figure per molecule:
 
@@ -50,7 +69,7 @@ one figure per molecule:
 | QMC-Givens | `Givens_results/shots` |
 | QMC-UCC | `UCCSD_results/shots` |
 | ADAPT-VQE (UCC pool) | `ADAPT-VQE_results/uccsd/shots_results` |
-| ADAPT-VQE (generalized pool) | `ADAPT-VQE_results/generalized/shots_results` |
+| ADAPT-VQE (generalised pool) | `ADAPT-VQE_results/generalized/shots_results` |
 
 **Features:**
 - Left panel: `|energy error|` vs #params, log scale, each method's noiseless

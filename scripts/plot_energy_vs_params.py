@@ -10,7 +10,7 @@ import matplotlib
 matplotlib.use("Agg")  # Use non-interactive backend
 import matplotlib.pyplot as plt
 from collections import defaultdict
-from plot_style import COLORS
+from plot_style import COLORS, finalize_panel
 
 # Configuration
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -21,6 +21,17 @@ ADAPT_DIR = os.path.join(BASE_DIR, "ADAPT-VQE_results")
 # to ADAPT-VQE_results) are kept here but should be plotted identically.
 # TEMP_ADAPT_DIR = os.path.join(BASE_DIR, "temp_results", "ADAPT-VQE_results")
 OUTPUT_DIR = os.path.join(BASE_DIR, "figures")
+
+# For these molecules the UCC-pool and generalized-pool ADAPT-VQE results are
+# identical, so only the generalised pool is loaded and plotted, labelled
+# plainly "ADAPT-VQE". N2 differs between the pools and keeps the pool label.
+ADAPT_POOLS_IDENTICAL = {"BeH2", "LiH_6_spinorbs"}
+
+
+def adapt_label(molecule):
+    if molecule in ADAPT_POOLS_IDENTICAL:
+        return "ADAPT-VQE"
+    return "ADAPT-VQE (generalised pool)"
 
 
 # Ensure output directory exists
@@ -131,7 +142,7 @@ def load_adapt_results(pool, backend="statevector"):
     """
     results = defaultdict(list)
 
-    for base_dir in (ADAPT_DIR,): #, TEMP_ADAPT_DIR
+    for base_dir in (ADAPT_DIR,):  # , TEMP_ADAPT_DIR
         pool_dir = os.path.join(base_dir, pool, backend)
 
         if not os.path.exists(pool_dir):
@@ -140,6 +151,8 @@ def load_adapt_results(pool, backend="statevector"):
         for molecule in os.listdir(pool_dir):
             molecule_path = os.path.join(pool_dir, molecule)
             if not os.path.isdir(molecule_path):
+                continue
+            if pool == "uccsd" and molecule in ADAPT_POOLS_IDENTICAL:
                 continue
 
             for circuit_dir in os.listdir(molecule_path):
@@ -256,7 +269,7 @@ def plot_molecule(
             yerr=error_bars,
             fmt="o-",
             label="QMC-Givens",
-            color=COLORS["H1-1E"],
+            color=COLORS["QMC-Givens"],
             markersize=10,
             linewidth=3,
             capsize=3,
@@ -311,7 +324,7 @@ def plot_molecule(
     _plot_series(
         ax1,
         adapt_generalized_hw_data,
-        "ADAPT-VQE (generalized pool)",
+        adapt_label(molecule),
         COLORS["ADAPT-generalized"],
         "D",
         markersize=8,
@@ -329,7 +342,7 @@ def plot_molecule(
             errors,
             "o-",
             label="QMC-Givens",
-            color=COLORS["Statevector"],
+            color=COLORS["QMC-Givens"],
             markersize=6,
             linewidth=2,
             zorder=3,
@@ -380,7 +393,7 @@ def plot_molecule(
     _plot_series(
         ax2,
         adapt_generalized_sv_data,
-        "ADAPT-VQE (generalized pool)",
+        adapt_label(molecule),
         COLORS["ADAPT-generalized"],
         "D",
     )
@@ -411,7 +424,8 @@ def plot_molecule(
         "QMC-Givens",
         "QMC-UCC",
         "ADAPT-VQE (UCC pool)",
-        "ADAPT-VQE (generalized pool)",
+        "ADAPT-VQE (generalised pool)",
+        "ADAPT-VQE",
         "Hartree–Fock",
     ]
     reordered_handles = []
@@ -447,7 +461,8 @@ def plot_molecule(
         "QMC-Givens",
         "QMC-UCC",
         "ADAPT-VQE (UCC pool)",
-        "ADAPT-VQE (generalized pool)",
+        "ADAPT-VQE (generalised pool)",
+        "ADAPT-VQE",
         "Hartree–Fock",
     ]
     reordered_handles2 = []
@@ -487,13 +502,13 @@ def plot_molecule(
         )
 
     plt.tight_layout()
-    plt.subplots_adjust(left=0.12)
+    finalize_panel(fig, "energy_vs_params", molecule)
 
     # Save figure
     molecule_dir = os.path.join(OUTPUT_DIR, molecule)
     os.makedirs(molecule_dir, exist_ok=True)
     output_path = os.path.join(molecule_dir, f"{molecule}_energy_vs_params.svg")
-    plt.savefig(output_path, bbox_inches="tight")
+    plt.savefig(output_path)  # fixed margins, see plot_style.finalize_panel
     print(f"Saved: {output_path}")
 
     plt.close()
@@ -564,11 +579,11 @@ def main():
         print(f"  UCCSD points: {len(uccsd_data)}")
         print(f"  ADAPT-VQE (UCC pool) sv points: {len(adapt_uccsd_sv_data)}")
         print(
-            f"  ADAPT-VQE (generalized pool) sv points: {len(adapt_generalized_sv_data)}"
+            f"  ADAPT-VQE (generalised pool) sv points: {len(adapt_generalized_sv_data)}"
         )
         print(f"  ADAPT-VQE (UCC pool) H1-1E points: {len(adapt_uccsd_hw_data)}")
         print(
-            f"  ADAPT-VQE (generalized pool) H1-1E points: {len(adapt_generalized_hw_data)}"
+            f"  ADAPT-VQE (generalised pool) H1-1E points: {len(adapt_generalized_hw_data)}"
         )
 
         plot_molecule(

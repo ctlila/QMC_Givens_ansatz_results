@@ -1,0 +1,99 @@
+ansatz,backend,molecule,circuit,nb_params,nb_qubits,n_1q_gates,n_2q_gates,total_gates,depth,depth_2q,n_rz_gates,optimisation_level
+ADAPT-VQE (generalized pool),H1-Emulator,BeH2,adapt_01_params,1,8,63,33,96,66,33,1,2
+ADAPT-VQE (generalized pool),H1-Emulator,BeH2,adapt_02_params,2,8,140,93,233,186,93,5,2
+ADAPT-VQE (generalized pool),H1-Emulator,BeH2,adapt_03_params,3,8,143,95,238,190,95,4,2
+ADAPT-VQE (generalized pool),H1-Emulator,BeH2,adapt_04_params,4,8,154,100,254,192,96,5,2
+ADAPT-VQE (generalized pool),H1-Emulator,BeH2,adapt_05_params,5,8,257,186,443,364,182,7,2
+ADAPT-VQE (generalized pool),H1-Emulator,BeH2,adapt_06_params,6,8,339,258,597,508,254,7,2
+ADAPT-VQE (generalized pool),H1-Emulator,BeH2,adapt_07_params,7,8,427,334,761,660,330,7,2
+ADAPT-VQE (generalized pool),H1-Emulator,BeH2,adapt_08_params,8,8,442,340,782,672,336,7,2
+ADAPT-VQE (generalized pool),H1-Emulator,BeH2,adapt_09_params,9,8,455,349,804,674,337,6,2
+ADAPT-VQE (generalized pool),H1-Emulator,LiH_6_spinorbs,adapt_01_params,1,6,60,33,93,66,33,1,2
+ADAPT-VQE (generalized pool),H1-Emulator,LiH_6_spinorbs,adapt_02_params,2,6,64,35,99,69,34,2,2
+ADAPT-VQE (generalized pool),H1-Emulator,LiH_6_spinorbs,adapt_03_params,3,6,135,83,218,164,82,5,2
+ADAPT-VQE (generalized pool),H1-Emulator,LiH_6_spinorbs,adapt_04_params,4,6,193,127,320,251,126,6,2
+ADAPT-VQE (generalized pool),H1-Emulator,LiH_6_spinorbs,adapt_05_params,5,6,194,127,321,251,126,6,2
+ADAPT-VQE (generalized pool),H1-Emulator,LiH_6_spinorbs,adapt_06_params,6,6,198,130,328,257,129,6,2
+ADAPT-VQE (generalized pool),H1-Emulator,LiH_6_spinorbs,adapt_07_params,7,6,210,135,345,257,129,6,2
+ADAPT-VQE (generalized pool),H1-Emulator,N2,adapt_01_params,1,14,128,89,217,180,89,5,2
+ADAPT-VQE (generalized pool),H1-Emulator,N2,adapt_02_params,2,14,234,178,412,358,178,7,2
+ADAPT-VQE (generalized pool),H1-Emulator,N2,adapt_03_params,3,16,475,391,866,782,390,10,2
+ADAPT-VQE (generalized pool),H1-Emulator,N2,adapt_04_params,4,16,578,480,1058,960,479,10,2
+ADAPT-VQE (generalized pool),H1-Emulator,N2,adapt_05_params,5,16,688,569,1257,1138,568,10,2
+ADAPT-VQE (generalized pool),H1-Emulator,N2,adapt_06_params,6,16,790,658,1448,1314,656,9,2
+ADAPT-VQE (generalized pool),H1-Emulator,N2,adapt_07_params,7,16,960,811,1771,1620,809,8,2
+ADAPT-VQE (generalized pool),H1-Emulator,N2,adapt_08_params,8,16,1130,960,2090,1918,958,9,2
+ADAPT-VQE (generalized pool),H1-Emulator,N2,adapt_09_params,9,16,1298,1108,2406,2214,1106,8,2
+ADAPT-VQE (generalized pool),H1-Emulator,N2,adapt_10_params,10,16,1462,1261,2723,2518,1258,9,2
+ADAPT-VQE (generalized pool),H1-Emulator,N2,adapt_11_params,11,16,1626,1410,3036,2816,1407,6,2
+ADAPT-VQE (generalized pool),H1-Emulator,N2,adapt_12_params,12,16,1763,1529,3292,3053,1526,5,2
+ADAPT-VQE (generalized pool),H1-Emulator,N2,adapt_13_params,13,16,1869,1618,3487,3230,1614,5,2
+ADAPT-VQE (generalized pool),H1-Emulator,N2,adapt_14_params,14,16,1979,1707,3686,3408,1703,6,2
+ADAPT-VQE (generalized pool),H1-Emulator,N2,adapt_15_params,15,16,2081,1796,3877,3586,1792,9,2
+ADAPT-VQE (generalized pool),H1-Emulator,N2,adapt_16_params,16,16,2193,1885,4078,3762,1880,10,2
+ADAPT-VQE (generalized pool),H1-Emulator,N2,adapt_17_params,17,16,2354,2037,4391,4066,2032,8,2
+ADAPT-VQE (generalized pool),H1-Emulator,N2,adapt_18_params,18,16,2523,2185,4708,4362,2180,12,2
+ADAPT-VQE (generalized pool),H1-Emulator,N2,adapt_19_params,19,16,2678,2335,5013,4662,2330,9,2
+ADAPT-VQE (generalized pool),H1-Emulator,N2,adapt_20_params,20,16,2857,2484,5341,4960,2479,11,2
+ADAPT-VQE (generalized pool),H1-Emulator,N2,adapt_21_params,21,16,3021,2633,5654,5258,2628,9,2
+ADAPT-VQE (generalized pool),H1-Emulator,N2,adapt_22_params,22,16,3181,2782,5963,5554,2776,9,2
+ADAPT-VQE (generalized pool),H1-Emulator,N2,adapt_23_params,23,16,3383,2962,6345,5914,2956,9,2
+ADAPT-VQE (generalized pool),H1-Emulator,N2,adapt_24_params,24,16,3552,3110,6662,6210,3104,7,2
+ADAPT-VQE (generalized pool),H1-Emulator,N2,adapt_25_params,25,16,3681,3228,6909,6446,3222,6,2
+ADAPT-VQE (generalized pool),H1-Emulator,N2,adapt_26_params,26,16,3880,3409,7289,6808,3403,10,2
+ADAPT-VQE (generalized pool),H1-Emulator,N2,adapt_27_params,27,16,4047,3558,7605,7106,3552,11,2
+ADAPT-VQE (generalized pool),H1-Emulator,N2,adapt_28_params,28,16,4140,3645,7785,7280,3639,10,2
+ADAPT-VQE (generalized pool),H1-Emulator,N2,adapt_29_params,29,16,4262,3738,8000,7466,3732,9,2
+ADAPT-VQE (generalized pool),H1-Emulator,N2,adapt_30_params,30,16,4336,3799,8135,7588,3793,9,2
+ADAPT-VQE (generalized pool),H1-Emulator,N2,adapt_31_params,31,16,4387,3832,8219,7653,3826,10,2
+ADAPT-VQE (generalized pool),H1-Emulator,N2,adapt_32_params,32,16,4538,3957,8495,7903,3951,9,2
+ADAPT-VQE (generalized pool),H1-Emulator,N2,adapt_33_params,33,16,4632,4042,8674,8073,4036,9,2
+ADAPT-VQE (generalized pool),H1-Emulator,N2,adapt_34_params,34,16,4779,4159,8938,8307,4153,9,2
+ADAPT-VQE (generalized pool),H1-Emulator,N2,adapt_35_params,35,16,4887,4256,9143,8500,4250,9,2
+Givens,H1-1E,BeH2,0_givens,0,8,10,0,10,2,0,0,0
+Givens,H1-1E,BeH2,1_givens,1,8,32,13,45,24,11,4,2
+Givens,H1-1E,BeH2,2_givens,2,8,50,24,74,41,20,5,2
+Givens,H1-1E,BeH2,3_givens,3,8,70,35,105,60,29,8,2
+Givens,H1-1E,BeH2,5_givens,5,8,77,39,116,64,31,6,2
+Givens,H1-1E,BeH2,6_givens,6,8,91,49,140,80,39,6,2
+Givens,H1-1E,BeH2,7_givens,7,8,107,61,168,100,49,4,2
+Givens,H1-1E,BeH2,9_givens,9,8,119,65,184,104,51,8,2
+Givens,H1-1E,LiH_6_spinorbs,0_givens,0,6,8,0,8,2,0,0,0
+Givens,H1-1E,LiH_6_spinorbs,1_givens,1,6,30,13,43,24,11,4,2
+Givens,H1-1E,LiH_6_spinorbs,2_givens,2,6,48,24,72,41,20,5,2
+Givens,H1-1E,LiH_6_spinorbs,4_givens,4,6,56,28,84,46,22,4,2
+Givens,H1-1E,LiH_6_spinorbs,5_givens,5,6,69,38,107,62,30,3,2
+Givens,H1-1E,LiH_6_spinorbs,6_givens,6,6,87,50,137,82,40,3,2
+Givens,H1-1E,LiH_6_spinorbs,8_givens,8,6,96,54,150,86,42,4,2
+Givens,H1-1E,N2,N2_1_givens,1,12,36,13,49,24,11,4,2
+Givens,H1-1E,N2,N2_2_givens,2,14,62,26,88,24,11,8,2
+Givens,H1-1E,N2,4_dets_3_givens,3,15,87,39,126,45,22,11,2
+Givens,H1-1E,N2,5_dets_4_givens,4,15,104,50,154,62,31,11,2
+Givens,H1-1E,N2,10_dets_10_givens,10,16,211,122,333,120,60,9,2
+Givens,H1-1E,N2,14_dets_16_givens,16,16,330,198,528,222,113,15,2
+Givens,H1-1E,N2,20_dets_22_givens,22,16,438,272,710,359,182,12,2
+Givens,H1-1E,N2,25_dets_26_givens,26,16,512,322,834,441,226,12,2
+Givens,H1-1E,N2,30_dets_32_givens,32,16,616,392,1008,495,253,12,2
+Givens,H1-1E,N2,35_dets_35_givens,35,16,672,429,1101,549,280,14,2
+UCCSD,H1-1E,BeH2,BeH2_1,1,8,51,24,75,35,17,3,2
+UCCSD,H1-1E,BeH2,BeH2_2,2,8,120,69,189,101,50,5,2
+UCCSD,H1-1E,BeH2,BeH2_4,4,8,138,78,216,117,59,6,2
+UCCSD,H1-1E,BeH2,BeH2_5,5,8,219,137,356,180,91,5,2
+UCCSD,H1-1E,BeH2,BeH2_6,6,8,293,186,479,249,125,7,2
+UCCSD,H1-1E,BeH2,BeH2_7,7,8,369,235,604,317,159,8,2
+UCCSD,H1-1E,BeH2,BeH2_9,9,8,375,245,620,331,167,6,2
+UCCSD,H1-1E,LiH_6_spinorbs,LiH_1,1,6,49,24,73,35,17,3,2
+UCCSD,H1-1E,LiH_6_spinorbs,LiH_3,3,6,55,26,81,39,19,4,2
+UCCSD,H1-1E,LiH_6_spinorbs,LiH_4,4,6,116,64,180,93,47,5,2
+UCCSD,H1-1E,LiH_6_spinorbs,LiH_5,5,6,153,89,242,130,66,5,2
+UCCSD,H1-1E,LiH_6_spinorbs,LiH_8,8,6,230,139,369,205,104,6,2
+UCCSD,H1-1E,N2,N2_1,1,16,105,60,165,68,33,4,2
+UCCSD,H1-1E,N2,N2_2,2,16,131,81,212,97,50,3,2
+UCCSD,H1-1E,N2,N2_3,3,16,221,138,359,165,83,5,2
+UCCSD,H1-1E,N2,N2_4,4,16,307,196,503,231,116,7,2
+UCCSD,H1-1E,N2,N2_10,10,16,715,478,1193,548,282,10,2
+UCCSD,H1-1E,N2,N2_16,16,16,1061,720,1781,856,440,7,2
+UCCSD,H1-1E,N2,N2_22,22,16,1513,1025,2538,1219,622,12,2
+UCCSD,H1-1E,N2,N2_26,26,16,1808,1248,3056,1420,720,13,2
+UCCSD,H1-1E,N2,N2_32,32,16,2407,1697,4104,1974,1003,14,2
+UCCSD,H1-1E,N2,N2_35,35,16,2689,1901,4590,2205,1125,12,2
